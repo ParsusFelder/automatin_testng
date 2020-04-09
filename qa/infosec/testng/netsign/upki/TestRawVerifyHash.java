@@ -940,7 +940,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用正常RSA证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-dn-base64-salg", dataProviderClass =
@@ -981,7 +980,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用作废RSA证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-dn-base64-salg", dataProviderClass =
@@ -1025,7 +1023,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用过期RSA证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-dn-base64-salg", dataProviderClass =
@@ -1066,7 +1063,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用不受信任RSA证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-dn-base64-salg", dataProviderClass =
@@ -1110,7 +1106,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用正常RSA证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-sn-base64-salg", dataProviderClass =
@@ -1151,7 +1146,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用作废RSA证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-sn-base64-salg", dataProviderClass =
@@ -1194,7 +1188,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用过期RSA证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-sn-base64-salg", dataProviderClass =
@@ -1235,7 +1228,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用不受信任RSA证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-sn-base64-salg", dataProviderClass =
@@ -1279,7 +1271,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用正常SM2证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-dn-base64-salg", dataProviderClass =
@@ -1323,7 +1314,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用作废SM2证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-dn-base64-salg", dataProviderClass =
@@ -1367,7 +1357,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用过期SM2证书DN签名，公钥验签
      *
-     * @param dn  证书DN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-dn-base64-salg", dataProviderClass =
@@ -1412,7 +1401,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用正常SM2证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-sn-base64-salg", dataProviderClass =
@@ -1456,7 +1444,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用作废SM2证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-sn-base64-salg", dataProviderClass =
@@ -1500,7 +1487,6 @@ public class TestRawVerifyHash {
     /**
      * Raw验摘要（rawVerifyHash）:使用过期SM2证书SN签名，公钥验签
      *
-     * @param sn  证书SN
      * @param alg 摘要算法
      */
     @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-sn-base64-salg", dataProviderClass =

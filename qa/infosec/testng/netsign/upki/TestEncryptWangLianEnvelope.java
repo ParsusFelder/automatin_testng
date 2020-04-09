@@ -172,8 +172,6 @@ public class TestEncryptWangLianEnvelope {
     /**
      * 制作网联格式数字信封,使用证书BankCode，BankCode处于黑名单
      *
-     * @param sCertBankCode 证书BankCode
-     * @param sAlg          对称算法
      */
     @Test(groups = "abcjew.encryptwanglianenvelope.normal")
     public void testEncryptWangLianEnvelope_05() {

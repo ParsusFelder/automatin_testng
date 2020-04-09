@@ -170,7 +170,6 @@ public class TestEncryptAndSignEnvelope {
     /**
      * 制作带签名的数字信封，使用RSA证书Bankcode
      *
-     * @param SN   RSA证书Bankcode
      * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
      * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
@@ -200,7 +199,6 @@ public class TestEncryptAndSignEnvelope {
     /**
      * 制作带签名的数字信封，使用SM2证书Bankcode
      *
-     * @param SN   SM2证书Bankcode
      * @param dAlg SHA1/SHA256/SM3
      * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */

@@ -135,8 +135,6 @@ public class TestCUPNCPRawSign {
     /**
      * 编制银联无卡支付裸签名（CUPNCPRawSign）：原文为null
      *
-     * @param alg 摘要算法
-     * @param dn  RSA/SM2证书DN
      */
     @Test(groups = "abcjew.cupncprawsign.normal")
     public void testCUPNCPRawSign_04() {
@@ -186,7 +184,6 @@ public class TestCUPNCPRawSign {
     /**
      * 编制银联无卡支付裸签名（CUPNCPRawSign）：DN错误
      *
-     * @param dn RSA/SM2证书DN
      */
     @Test(groups = "abcjew.cupncprawsign.normal")
     public void testCUPNCPRawSign_06() {
@@ -211,7 +208,6 @@ public class TestCUPNCPRawSign {
     /**
      * 编制银联无卡支付裸签名（CUPNCPRawSign）：摘要算法为空或null
      *
-     * @param dn RSA/SM2证书DN
      */
     @Test(groups = "abcjew.cupncprawsign.normal", dataProvider = "emptys-parameter", dataProviderClass =
             NetSignDataProvider.class)
@@ -236,7 +232,6 @@ public class TestCUPNCPRawSign {
     /**
      * 编制银联无卡支付裸签名（CUPNCPRawSign）：摘要算法错误
      *
-     * @param dn RSA/SM2证书DN
      */
     @Test(groups = "abcjew.cupncprawsign.normal")
     public void testCUPNCPRawSign_08() {

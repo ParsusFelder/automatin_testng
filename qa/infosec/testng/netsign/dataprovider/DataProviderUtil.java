@@ -842,7 +842,6 @@ public class DataProviderUtil {
      *
      * @param strpath
      * @return [alg, dn , cert]
-     * @throws IOException
      */
     public static Object[][] resolveAlgDNCert(String strpath) {
         // 解析RSA证书，组合RSA数据源

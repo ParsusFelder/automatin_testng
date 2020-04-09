@@ -107,7 +107,6 @@ public class TestRawSignHash {
      * Raw签摘要（rawSignHash）:SN，摘要，Base64待签名摘要正确，为String类型
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书SN、国密证书SN
      */
     @Test(groups = "abcjew.rawsignhash.normal", dataProvider = "all-alg-sn", dataProviderClass = NetSignDataProvider.class)
     public void testRawSignHash_03(String alg, String sn) {
@@ -131,7 +130,6 @@ public class TestRawSignHash {
      * Raw签摘要（rawSignHash）:SN，摘要，Base64待签名摘要正确，为byte[]类型
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书SN、国密证书SN
      */
     @Test(groups = "abcjew.rawsignhash.normal", dataProvider = "all-alg-sn", dataProviderClass = NetSignDataProvider.class)
     public void testRawSignHash_04(String alg, String sn) {
@@ -154,7 +152,6 @@ public class TestRawSignHash {
      * Raw签摘要（rawSignHash）:Bankcode，摘要，Base64待签名摘要正确，为String类型
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书Bankcode、国密证书Bankcode
      */
     @Test(groups = "abcjew.rawsignhash.normal", dataProvider = "all-alg-bankcode", dataProviderClass = NetSignDataProvider.class)
     public void testRawSignHash_05(String alg, String bankcode) {
@@ -178,7 +175,6 @@ public class TestRawSignHash {
      * Raw签摘要（rawSignHash）:Bankcode，摘要，Base64待签名摘要正确，为byte[]类型
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书Bankcode、国密证书Bankcode
      */
     @Test(groups = "abcjew.rawsignhash.normal", dataProvider = "all-alg-bankcode", dataProviderClass = NetSignDataProvider.class)
     public void testRawSignHash_06(String alg, String bankcode) {

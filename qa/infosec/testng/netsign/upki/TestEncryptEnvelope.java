@@ -168,7 +168,6 @@ public class TestEncryptEnvelope {
      * 制作数字信封，仅使用bankcode
      *
      * @param sAlg 对称算法为DES/3DES/RC2/RC4/SM4/AES
-     * @param str
      */
     @Test(groups = "abcjew.encryptenvelope.normal", dataProvider = "all-symmalg-bankcode", dataProviderClass =
             NetSignDataProvider.class)
@@ -249,7 +248,6 @@ public class TestEncryptEnvelope {
     /**
      * 制作数字信封，DN/SN/bankcode为null
      *
-     * @param sAlg 对称算法为DES/3DES/RC2/RC4/SM4/AES
      * @param str
      */
     @Test(groups = "abcjew.encryptenvelope.normal", dataProvider = "emptys-parameter", dataProviderClass =

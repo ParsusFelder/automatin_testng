@@ -115,8 +115,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废RSA证书DN
      *
      * @param DN   RSA证书DN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-rsa-dn", dataProviderClass =
             NetSignDataProvider.class)
@@ -157,8 +155,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用不受信任RSA证书DN
      *
      * @param DN   RSA证书DN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "nottrust-rsa-dn", dataProviderClass =
             NetSignDataProvider.class)
@@ -194,8 +190,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期RSA证书DN
      *
      * @param DN   RSA证书DN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-rsa-dn", dataProviderClass =
             NetSignDataProvider.class)
@@ -269,8 +263,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废SM2证书DN
      *
      * @param DN   SM2证书DN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-sm2-dn", dataProviderClass =
             NetSignDataProvider.class)
@@ -310,8 +302,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期SM2证书DN
      *
      * @param DN   SM2证书DN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-sm2-dn", dataProviderClass =
             NetSignDataProvider.class)
@@ -385,8 +375,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废RSA证书SN
      *
      * @param SN   RSA证书SN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-rsa-sn", dataProviderClass =
             NetSignDataProvider.class)
@@ -425,8 +413,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用不受信任RSA证书SN
      *
      * @param SN   RSA证书SN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "nottrust-rsa-sn", dataProviderClass =
             NetSignDataProvider.class)
@@ -466,8 +452,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期RSA证书SN
      *
      * @param SN   RSA证书SN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-rsa-sn", dataProviderClass =
             NetSignDataProvider.class)
@@ -541,8 +525,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废SM2证书SN
      *
      * @param SN   SM2证书SN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-sm2-sn", dataProviderClass =
             NetSignDataProvider.class)
@@ -582,8 +564,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期SM2证书SN
      *
      * @param SN   SM2证书SN
-     * @param dAlg SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-sm2-sn", dataProviderClass =
             NetSignDataProvider.class)
@@ -661,8 +641,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废RSA证书Bankcode
      *
      * @param Bankcode RSA证书Bankcode
-     * @param dAlg     SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg     SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-rsa-bankcode", dataProviderClass
             = NetSignDataProvider.class)
@@ -705,8 +683,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用不受信任RSA证书Bankcode
      *
      * @param Bankcode RSA证书Bankcode
-     * @param dAlg     SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg     SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "nottrust-rsa-bankcode",
             dataProviderClass = NetSignDataProvider.class)
@@ -746,8 +722,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期RSA证书Bankcode
      *
      * @param Bankcode RSA证书Bankcode
-     * @param dAlg     SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg     SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-rsa-bankcode", dataProviderClass
             = NetSignDataProvider.class)
@@ -825,8 +799,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用作废SM2证书Bankcode
      *
      * @param Bankcode SM2证书Bankcode
-     * @param dAlg     SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg     SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "revoke-sm2-bankcode", dataProviderClass
             = NetSignDataProvider.class)
@@ -866,8 +838,6 @@ public class TestDecryptAndVerifyEnvelop {
      * 解带签名的数字信封，使用过期SM2证书Bankcode
      *
      * @param Bankcode SM2证书Bankcode
-     * @param dAlg     SHA1/SHA224/SHA256/SHA384/SHA512
-     * @param sAlg     SM4/AES/RC2/RC4/DES/3DES
      */
     @Test(groups = "abcjew.decryptandverifyenvelope.normal", dataProvider = "expire-sm2-bankcode", dataProviderClass
             = NetSignDataProvider.class)

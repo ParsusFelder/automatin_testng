@@ -273,7 +273,7 @@ public class Utils {
 
     /**
      * 修改String类型数据，用于篡改密文
-     * @param plain 原文
+     * @param plainText 原文
      * @param a 起始位置
      * @param b 终止位置
      * @param data 要修改的内容
@@ -288,7 +288,7 @@ public class Utils {
 
     /**
      * 修改byte[]类型数据，用于篡改密文
-     * @param plain 原文
+     * @param plainText 原文
      * @param a 起始位置
      * @param b 终止位置
      * @param data 要修改的内容

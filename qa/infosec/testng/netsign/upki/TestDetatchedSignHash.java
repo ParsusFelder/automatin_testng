@@ -84,7 +84,6 @@ public class TestDetatchedSignHash {
      * Detached签摘要（detachedSignHash）:SN，摘要，Base64待签名摘要正确
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书SN、国密证书SN
      */
     @Test(groups = "abcjew.detachedsignhash.normal", dataProvider = "all-alg-sn", dataProviderClass = NetSignDataProvider.class)
     public void testDetachedSignHash_02(String alg, String sn) {
@@ -110,7 +109,6 @@ public class TestDetatchedSignHash {
      * Raw签摘要（rawSignHash）:Bankcode，摘要，Base64待签名摘要正确
      *
      * @param alg RSA摘要算法、国密摘要算法
-     * @param dn  RSA证书Bankcode、国密证书Bankcode
      */
     @Test(groups = "abcjew.rawsignhash.normal", dataProvider = "all-alg-bankcode", dataProviderClass = NetSignDataProvider.class)
     public void testDetachedSignHash_03(String alg, String bankcode) {

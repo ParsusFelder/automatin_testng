@@ -95,7 +95,6 @@ public class TestDigest {
 
     /**
      * 本地做摘要，原文为null
-     * @param sDigestAlg
      */
     @Test(groups = "abcjew.digest.normal")
     public void testDigest_03() {
@@ -156,7 +155,6 @@ public class TestDigest {
     }
     /**
      * 本地做摘要，摘要为空或null
-     * @param sDigestAlg
      */
     @Test(groups = "abcjew.digest.normal")
     public void testDigest_06() {
