@@ -1,53 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ba588d4-29b4-47c0-940b-56b0f0747a88" name="Default Changelist" comment="更新自动化接口用例">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/crypto.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/testng_netsign_abcjew2.8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/testng_netsign_abcjew2.8.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/DataProviderUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/DataProviderUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/NetSignDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/NetSignDataProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/util/ParameterUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/util/ParameterUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/util/ParseCert.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/util/ParseCert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/util/ParseFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/util/ParseFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/util/SFTPFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/util/SFTPFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/dataprovider/util/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/dataprovider/util/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/init/NetSignServerInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/init/NetSignServerInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestABCUSBKeyAttachedVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestABCUSBKeyAttachedVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestAttachedSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestAttachedSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestAttachedVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestAttachedVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestAttachedVerifyWangLian.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestAttachedVerifyWangLian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPCQPDecryptAndVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPCQPDecryptAndVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPCQPEncryptAndSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPCQPEncryptAndSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPNCPDecrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPNCPDecrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPNCPEncrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPNCPEncrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPNCPRawSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPNCPRawSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestCUPNCPRawVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestCUPNCPRawVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDeatachedVerifyHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDeatachedVerifyHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDecryptAndVerifyEnvelop.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDecryptAndVerifyEnvelop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDecryptCUPFacePayWLEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDecryptCUPFacePayWLEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDecryptEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDecryptEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDecryptWangLianEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDecryptWangLianEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDetachedSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDetachedSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDetachedVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDetachedVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDetachedVerifyWangLian.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDetachedVerifyWangLian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDetatchedSignHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDetatchedSignHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestDigest.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestDigest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestEncryptAndSignEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestEncryptAndSignEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestEncryptEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestEncryptEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestEncryptWangLianEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestEncryptWangLianEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestMakeCUPFacePayWLEnvelope.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestMakeCUPFacePayWLEnvelope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawSign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawSignHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawSignHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawVerifyByBase64Cert.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawVerifyByBase64Cert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawVerifyByX509Cert.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawVerifyByX509Cert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestRawVerifyHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestRawVerifyHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestUnsymmDecrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestUnsymmDecrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/TestUnsymmEncrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/TestUnsymmEncrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/qa/infosec/testng/netsign/upki/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/test.java" afterDir="false" />
+    <list default="true" id="4ba588d4-29b4-47c0-940b-56b0f0747a88" name="Default Changelist" comment="svn:2020">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng_netsign_abcjew2.8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/testng_netsign_abcjew2.8.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +16,11 @@
     <option name="runtimeAnalysisType" value="-1" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IgnoredFileRootStore">
@@ -101,6 +64,11 @@
   <component name="RebelAgentSelection">
     <selection>jr</selection>
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\ideaproject\testng_netsign_abcjew2.8" />
+    </key>
+  </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
@@ -124,8 +92,23 @@
       <option name="presentableId" value="Default" />
       <updated>1585646910203</updated>
       <workItem from="1585646912252" duration="258000" />
-      <workItem from="1586414334566" duration="1172000" />
+      <workItem from="1586414334566" duration="3598000" />
     </task>
+    <task id="LOCAL-00001" summary="更新自动化接口用例">
+      <created>1586415540766</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586415540766</updated>
+    </task>
+    <task id="LOCAL-00002" summary="svn:2020">
+      <created>1586415722190</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586415722190</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,17 +116,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="更新自动化接口用例" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新自动化接口用例" />
+    <MESSAGE value="svn:2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="svn:2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="811" y="412" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585646938862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="811" y="412" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585646938862" />
-    <state x="543" y="116" key="CommitChangelistDialog2" timestamp="1586415539054">
+    <state x="543" y="116" key="CommitChangelistDialog2" timestamp="1586486826315">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="543" y="116" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586415539054" />
+    <state x="543" y="116" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586486826315" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1585646950935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -160,9 +144,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="97" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586414924727" />
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1586415560658">
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1586486777300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586415560658" />
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586486777300" />
   </component>
 </project>

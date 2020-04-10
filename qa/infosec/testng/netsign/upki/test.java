@@ -8,8 +8,8 @@ package qa.infosec.testng.netsign.upki;
  */
 public class test {
     public static void main(String[] args) {
-        // ABCD*4=DCBA
-        int x,y,z,k;
+        String abc = "null";
+        System.out.println("abc:"+ (abc == null ? null :"312"));
     }
 
 }
