@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ba588d4-29b4-47c0-940b-56b0f0747a88" name="Default Changelist" comment="svn:2020">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/qa/infosec/testng/netsign/upki/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testng_netsign_abcjew2.8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/testng_netsign_abcjew2.8.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585646910203</updated>
       <workItem from="1585646912252" duration="258000" />
-      <workItem from="1586414334566" duration="3598000" />
+      <workItem from="1586414334566" duration="3748000" />
     </task>
     <task id="LOCAL-00001" summary="更新自动化接口用例">
       <created>1586415540766</created>
@@ -108,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586415722190</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="svn:2020">
+      <created>1586486906867</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586486906867</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,10 +129,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="811" y="412" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585646938862" />
-    <state x="543" y="116" key="CommitChangelistDialog2" timestamp="1586486826315">
+    <state x="543" y="116" key="CommitChangelistDialog2" timestamp="1586486922263">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="543" y="116" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586486826315" />
+    <state x="543" y="116" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586486922263" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1585646950935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
