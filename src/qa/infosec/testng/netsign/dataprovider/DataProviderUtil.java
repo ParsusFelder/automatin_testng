@@ -26,8 +26,8 @@ import java.util.List;
  * Description:
  * </p>
  *
- * @author maxf
- * @date 2019年8月13日
+ * @author zhaoyongzhi
+ * @date 2020年04月13日
  */
 public class DataProviderUtil {
 
@@ -37,40 +37,34 @@ public class DataProviderUtil {
 
     /**
      * RSA对应的摘要算法
-     *
-     * @return
      */
     public static String[] RSAHashArrays() {
-        List<String> rsalist = new ArrayList<String>();
+        List<String> rsalist = new ArrayList<>();
         rsalist.add("MD5");
         rsalist.add("SHA1");
         rsalist.add("SHA224");
         rsalist.add("SHA256");
         rsalist.add("SHA384");
         rsalist.add("SHA512");
-        return rsalist.toArray(new String[rsalist.size()]);
+        return rsalist.toArray(new String[0]);
     }
 
     /**
      * 国密对应的摘要算法
-     *
-     * @return
      */
     public static String[] SM3HashArrays() {
-        List<String> sm3list = new ArrayList<String>();
+        List<String> sm3list = new ArrayList<>();
         sm3list.add("SM3");
         sm3list.add("SHA1");
         sm3list.add("SHA256");
-        return sm3list.toArray(new String[sm3list.size()]);
+        return sm3list.toArray(new String[0]);
     }
 
     /**
      * 二三类加密普通交易报文数据
-     *
-     * @return
      */
     public static String[] JsonDataList() {
-        List<String> EncryptDatalist = new ArrayList<String>();
+        List<String> EncryptDatalist = new ArrayList<>();
         EncryptDatalist.add("  {\"issInsCode\":   \"GFYH0001\"," + "\"priAccNo\":     \"6222027845126124255\","
                 + "\"customerNm\":   \"黄灿\"," + "\"certifId\":     \"340104198501020815\","
                 + "\"phoneNo\":      \"13100000014\"," + "\"msgCode\":      \"587644\"," + "\"subAccTp\":     \"2\","
@@ -80,16 +74,14 @@ public class DataProviderUtil {
         EncryptDatalist.add("{ \"keyTp\":\"3\"," + "\"newKey\":\"7f3d752fec836b861ff7e0abc470b34a\"" + "}");
         EncryptDatalist.add(" { \"keyTp\":\"3\"," + "\"newKey\":\"7f3d752fec836b861ff7e0abc470b34a\""
                 + "\"keyLabel\":\"55555\"" + "}");
-        return EncryptDatalist.toArray(new String[EncryptDatalist.size()]);
+        return EncryptDatalist.toArray(new String[0]);
     }
 
     /**
      * 银联二三类，加密并签名时，使用JSON字符串
-     *
-     * @return
      */
     public static String[] jsonEncryAndSignData() {
-        List<String> EncryptDatalist = new ArrayList<String>();
+        List<String> EncryptDatalist = new ArrayList<>();
         EncryptDatalist.add("{	\"cerVer\":       \"01\"," + "\"queryId\":      \"0007290020180104104733778626\","
                 + "\"sendInsCode\":  \"SASS0001\"," + "\"txnType\":      \"SA008\"," + "\"version\":      \"1.0\","
                 + "\"encryptData\":  {\"issInsCode\":   \"GFYH0001\"," + "\"priAccNo\":     \"6222027845126124255\","
@@ -105,35 +97,37 @@ public class DataProviderUtil {
                 + "\"sendInsCode\":\"SASS0001\"," + "\"txnType\":\"SA002\"," + "\"version\":\"1.0\","
                 + "\"encryptData\":  { \"keyTp\":\"3\"," + "\"newKey\":\"7f3d752fec836b861ff7e0abc470b34a\""
                 + "\"keyLabel\":\"55555\"" + "}}");
-        return EncryptDatalist.toArray(new String[EncryptDatalist.size()]);
+        return EncryptDatalist.toArray(new String[0]);
     }
 
     /**
      * 获取RSA、SM2证书DN，及其对应的摘要算法
      *
-     * @param strpath
+     * @param strpath 证书路径
      * @return [alg, dn]
      */
     public static Object[][] resolveAlgDN(String strpath) {
         // 解析RSA证书，组合RSA数据源
         String[] rsaalg = RSAHashArrays();
         String[] signdn = ParseCert.parseCertByAttributes("DN", strpath, "RSA");
+        assert signdn != null;
         int size1 = rsaalg.length * signdn.length;
         Object[][] algdn_rsa = new Object[size1][];
-        for (int i = 0; i < rsaalg.length; i++) {
-            for (int j = 0; j < signdn.length; j++) {
-                algdn_rsa[--size1] = new Object[]{rsaalg[i], signdn[j]};
+        for (String value : rsaalg) {
+            for (String s : signdn) {
+                algdn_rsa[--size1] = new Object[]{value, s};
             }
         }
 
         // 解析国密证书，组合SM2数据源
         String[] sm3alg = SM3HashArrays();
         String[] sm2dn = ParseCert.parseCertByAttributes("DN", strpath, "sm2");
+        assert sm2dn != null;
         int size2 = sm3alg.length * sm2dn.length;
         Object[][] algdn_sm2 = new Object[size2][];
-        for (int i = 0; i < sm3alg.length; i++) {
-            for (int j = 0; j < sm2dn.length; j++) {
-                algdn_sm2[--size2] = new Object[]{sm3alg[i], sm2dn[j]};
+        for (String value : sm3alg) {
+            for (String s : sm2dn) {
+                algdn_sm2[--size2] = new Object[]{value, s};
             }
         }
 
@@ -144,21 +138,17 @@ public class DataProviderUtil {
             return algdn_sm2;
         } else if (algdn_sm2.length == 0) {
             return algdn_rsa;
-        } else if (algdn_rsa.length != 0 && algdn_sm2.length != 0) {
+        } else {
             System.arraycopy(algdn_rsa, 0, algdn, 0, algdn_rsa.length);
             System.arraycopy(algdn_sm2, 0, algdn, algdn_rsa.length, algdn_sm2.length);
-
             return algdn;
-        } else {
-            System.out.println("no dataprovider");
-            return null;
         }
     }
 
     /**
      * 获取机构代码及摘要
      *
-     * @param certpath
+     * @param certpath 证书路径
      * @return 【alg, bankcode】
      */
     public static Object[][] bankCodeAlg(String certpath) {
@@ -167,9 +157,9 @@ public class DataProviderUtil {
         String[] alg_rsa = RSAHashArrays();
         int size_rsa = bankcode_rsa.length * alg_rsa.length;
         Object[][] tmp_rsa = new Object[size_rsa][];
-        for (int i = 0; i < alg_rsa.length; i++) {
-            for (int j = 0; j < bankcode_rsa.length; j++) {
-                tmp_rsa[--size_rsa] = new Object[]{alg_rsa[i], bankcode_rsa[j]};
+        for (String s : alg_rsa) {
+            for (String value : bankcode_rsa) {
+                tmp_rsa[--size_rsa] = new Object[]{s, value};
             }
         }
 
@@ -178,9 +168,9 @@ public class DataProviderUtil {
         String[] alg_sm2 = SM3HashArrays();
         int size_sm2 = bankcode_sm2.length * alg_sm2.length;
         Object[][] tmp_sm2 = new Object[size_sm2][];
-        for (int i = 0; i < alg_sm2.length; i++) {
-            for (int j = 0; j < bankcode_sm2.length; j++) {
-                tmp_sm2[--size_sm2] = new Object[]{alg_sm2[i], bankcode_sm2[j]};
+        for (String s : alg_sm2) {
+            for (String value : bankcode_sm2) {
+                tmp_sm2[--size_sm2] = new Object[]{s, value};
             }
         }
 
@@ -191,14 +181,10 @@ public class DataProviderUtil {
             return tmp_sm2;
         } else if (tmp_sm2.length == 0) {
             return tmp_rsa;
-        } else if (tmp_rsa.length != 0 && tmp_sm2.length != 0) {
+        } else {
             System.arraycopy(tmp_rsa, 0, tmp, 0, tmp_rsa.length);
             System.arraycopy(tmp_sm2, 0, tmp, tmp_rsa.length, tmp_sm2.length);
-
             return tmp;
-        } else {
-            System.out.println("no dataprovider");
-            return null;
         }
     }
 
@@ -210,12 +196,13 @@ public class DataProviderUtil {
         String[] certID = ParseCert.parseCertByAttributes("DN", certpath, null);
         String[] keyText = ParseFile.getCUPSTCWorkingKey();
 
+        assert certID != null;
         int size = certID.length * keyText.length;
         Object[][] tmp = new Object[size][];
 
-        for (int i = 0; i < certID.length; i++) {
-            for (int j = 0; j < keyText.length; j++) {
-                tmp[--size] = new Object[]{certID[i], keyText[j]};
+        for (String s : certID) {
+            for (String value : keyText) {
+                tmp[--size] = new Object[]{s, value};
             }
         }
         return tmp;
@@ -224,17 +211,18 @@ public class DataProviderUtil {
     /**
      * 获取JSON字符串数据及签名加密DN 由于加密证书无类型限制，故与签名证书DN使用同一张
      *
-     * @param certpath
+     * @param certpath 证书路径
      * @return 【json,signdn,encdn】
      */
     public static Object[][] jsonSignDNAndEncryDN(String certpath) {
         String[] jsonData = jsonEncryAndSignData();
         String[] dn = ParseCert.parseCertByAttributes("DN", certpath, null);
+        assert dn != null;
         int size = jsonData.length * dn.length;
         Object[][] tmp = new Object[size][];
-        for (int i = 0; i < jsonData.length; i++) {
-            for (int j = 0; j < dn.length; j++) {
-                tmp[--size] = new Object[]{jsonData[i], dn[j], dn[j]};
+        for (String jsonDatum : jsonData) {
+            for (String s : dn) {
+                tmp[--size] = new Object[]{jsonDatum, s, s};
             }
         }
         return tmp;
@@ -243,7 +231,7 @@ public class DataProviderUtil {
     /**
      * 获取JSON字符串数据及签名加密机构代码 由于加密证书无类型限制，故与签名行号使用同一张
      *
-     * @param certpath
+     * @param certpath 证书路径
      * @return 【json,signbank,encbank】
      */
     public static Object[][] jsonSignAndEncryBank(String certpath) {
@@ -251,9 +239,9 @@ public class DataProviderUtil {
         String[] bankcode = ParseFile.getBankCode(ParameterUtil.localdetailpath, certpath, null);
         int size = jsonData.length * bankcode.length;
         Object[][] tmp = new Object[size][];
-        for (int i = 0; i < jsonData.length; i++) {
-            for (int j = 0; j < bankcode.length; j++) {
-                tmp[--size] = new Object[]{jsonData[i], bankcode[j], bankcode[j]};
+        for (String jsonDatum : jsonData) {
+            for (String s : bankcode) {
+                tmp[--size] = new Object[]{jsonDatum, s, s};
             }
         }
         return tmp;
@@ -261,8 +249,6 @@ public class DataProviderUtil {
 
     /**
      * 获取密钥列表中RSA证书主题
-     *
-     * @return【dn】
      */
     public static String[] getRSAKeystoreDN() {
         SAXReader reader = new SAXReader();
@@ -272,8 +258,8 @@ public class DataProviderUtil {
             Document d = reader.read(ParameterUtil.keystorepath);
             Element root = d.getRootElement();
             List<Element> elements = root.elements();
-            String keysize = null;
-            String subject = null;
+            String keysize;
+            String subject;
 
             for (Element element : elements) {
                 keysize = element.elementText("keysize");
@@ -288,13 +274,11 @@ public class DataProviderUtil {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /**
      * 获取密钥列表中国密证书主题
-     *
-     * @return【dn】
      */
     public static String[] getSM2KeystoreDN() {
         SAXReader reader = new SAXReader();
@@ -304,8 +288,8 @@ public class DataProviderUtil {
             Document d = reader.read(ParameterUtil.keystorepath);
             Element root = d.getRootElement();
             List<Element> elements = root.elements();
-            String keysize = null;
-            String subject = null;
+            String keysize;
+            String subject;
 
             for (Element element : elements) {
                 keysize = element.elementText("keysize");
@@ -320,7 +304,7 @@ public class DataProviderUtil {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /*
@@ -328,7 +312,7 @@ public class DataProviderUtil {
      */
     public static Object[] getRsaCert(String strpath) {
         ArrayList<X509Certificate> cert = ParseCert.getCert(strpath, "RSA");
-        return cert.toArray(new Object[cert.size()]);
+        return cert.toArray(new Object[0]);
     }
 
     /*
@@ -336,7 +320,7 @@ public class DataProviderUtil {
      */
     public static Object[] getSM2Cert(String strpath) {
         ArrayList<X509Certificate> cert = ParseCert.getCert(strpath, "SM2");
-        return cert.toArray(new Object[cert.size()]);
+        return cert.toArray(new Object[0]);
     }
 
     /*
@@ -350,20 +334,13 @@ public class DataProviderUtil {
         ArrayList<X509Certificate> cert = new ArrayList<>();
 
         if (rsaCert.size() == 0) {
-            return sm2Cert.toArray(new Object[sm2Cert.size()]);
+            return sm2Cert.toArray(new Object[0]);
         } else if (sm2Cert.size() == 0) {
-            return rsaCert.toArray(new Object[rsaCert.size()]);
-        } else if (rsaCert.size() != 0 && sm2Cert.size() != 0) {
-            for (int i = 0; i < sm2Cert.size(); i++) {
-                cert.add(sm2Cert.get(i));
-            }
-            for (int i = 0; i < rsaCert.size(); i++) {
-                cert.add(rsaCert.get(i));
-            }
-            return cert.toArray(new Object[size]);
+            return rsaCert.toArray(new Object[0]);
         } else {
-            System.out.println("no dataprovider");
-            return null;
+            cert.addAll(sm2Cert);
+            cert.addAll(rsaCert);
+            return cert.toArray(new Object[size]);
         }
     }
 
@@ -373,12 +350,11 @@ public class DataProviderUtil {
      *
      * @param strpath 证书存放路径
      * @param keyType 证书类型
-     * @return【X509Certificate cert】
      */
     public static Object[] getCert(String strpath, String keyType) {
         ArrayList<X509Certificate> cert = ParseCert.getCert(strpath, keyType);
 
-        return cert.toArray(new Object[cert.size()]);
+        return cert.toArray(new Object[0]);
     }
 
     /*
@@ -392,7 +368,7 @@ public class DataProviderUtil {
             Document d = reader.read(ParameterUtil.keystorepath);
             Element root = d.getRootElement();
             List<Element> elements = root.elements();
-            String subject = null;
+            String subject;
 
             for (Element element : elements) {
                 subject = element.elementText("subject");
@@ -403,7 +379,7 @@ public class DataProviderUtil {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /*
@@ -419,31 +395,27 @@ public class DataProviderUtil {
         rsaAlg = Arrays.copyOf(rsaAlg, rsaSize + sm3Size);
         // 复制sm3摘要算法数组内容到rsa摘要算法数组
         System.arraycopy(sm3Alg, 0, rsaAlg, rsaSize, sm3Size);
-        for (int i = 0; i < rsaAlg.length; i++) {
-            if (!list.contains(rsaAlg[i])) {
-                list.add(rsaAlg[i]);
+        for (String s : rsaAlg) {
+            if (!list.contains(s)) {
+                list.add(s);
             }
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 //===========================================facePayment1.3新增======================================================
 
     /**
      * 参数为null或""
-     *
-     * @return
      */
     public static String[] Emptys() {
-        List<String> emptylist = new ArrayList<String>();
+        List<String> emptylist = new ArrayList<>();
         emptylist.add("");
         emptylist.add(null);
-        return emptylist.toArray(new String[emptylist.size()]);
+        return emptylist.toArray(new String[0]);
     }
 
     /**
      * 获取所有对称算法
-     *
-     * @return
      */
     public static Object[] getSymmetricalAlg(int ivLength) {
         List<String> list = new ArrayList<>();
@@ -464,13 +436,12 @@ public class DataProviderUtil {
             list.add("AES");
         }
 
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /**
      * 获取对称密钥及密钥类型 ivEmpty = true 不反回含有/ECB的填充模式及RC4/RC2对称密钥算法
      *
-     * @return
      */
     public static Object[] getSymmKeyAndAlg(int ivLength, boolean ivEmpty) {
         String key_length_8 = Utils.getRandomString(8);
@@ -527,13 +498,11 @@ public class DataProviderUtil {
                 return null;
             }
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /**
      * 获取对称密钥算法填充模式
-     *
-     * @return
      */
     public static Object[] getModePadding(boolean ivEmpty) {
         List<String> listMode = new ArrayList<>();
@@ -553,12 +522,12 @@ public class DataProviderUtil {
         listPadding.add("/PKCS5Padding");
         listPadding.add("/PKCS7Padding");
 
-        for (int i = 0; i < listMode.size(); i++) {
-            for (int j = 0; j < listPadding.size(); j++) {
-                listModePadding.add(listMode.get(i) + listPadding.get(j));
+        for (String value : listMode) {
+            for (String s : listPadding) {
+                listModePadding.add(value + s);
             }
         }
-        return listModePadding.toArray(new String[listModePadding.size()]);
+        return listModePadding.toArray(new String[0]);
     }
 
     /**
@@ -566,17 +535,17 @@ public class DataProviderUtil {
      *
      * @param ivLength iv长度
      * @param ivEmpty  iv是否为空 当ivEmpty = true 不返回含有/ECB的填充模式
-     * @return
      */
     public static Object[][] symmKeyAndModePadding(int ivLength, boolean ivEmpty) {
         Object[] symmKeyAndAlg = getSymmKeyAndAlg(ivLength, ivEmpty);
         Object[] modePadding = getModePadding(ivEmpty);
+        assert symmKeyAndAlg != null;
         int size = symmKeyAndAlg.length * modePadding.length;
         Object[][] tmp_all = new Object[size][];
 
-        for (int i = 0; i < symmKeyAndAlg.length; i++) {
-            for (int j = 0; j < modePadding.length; j++) {
-                tmp_all[--size] = new Object[]{symmKeyAndAlg[i], modePadding[j]};
+        for (Object value : symmKeyAndAlg) {
+            for (Object o : modePadding) {
+                tmp_all[--size] = new Object[]{value, o};
             }
         }
         return tmp_all;
@@ -584,8 +553,6 @@ public class DataProviderUtil {
 
     /**
      * 解析对称密钥列表获取:keyLable、keyType、keyData
-     *
-     * @return
      */
     public static Object[] getKeyLbAndTpAndData(int ivLength) {
         String[] keyLables = ParseFile.getEleValFroXML(ParameterUtil.localsymmpath, "KeyLabel");
@@ -612,10 +579,10 @@ public class DataProviderUtil {
             Assert.fail("请检查KeyLable元素名称是否输入正确");
         } else if (keyTypes.length == 0) {
             Assert.fail("请检查KeyType元素名称是否输入正确");
-        } else if (keyData.length == 0) {
+        } else {
             Assert.fail("请检查KeyData元素名称是否输入正确");
         }
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /**
@@ -630,9 +597,9 @@ public class DataProviderUtil {
         int size = symmKey.length * modePadding.length;
         Object[][] tmp_all = new Object[size][];
 
-        for (int i = 0; i < symmKey.length; i++) {
-            for (int j = 0; j < modePadding.length; j++) {
-                tmp_all[--size] = new Object[]{symmKey[i], modePadding[j]};
+        for (Object value : symmKey) {
+            for (Object o : modePadding) {
+                tmp_all[--size] = new Object[]{value, o};
             }
         }
         return tmp_all;
@@ -650,9 +617,9 @@ public class DataProviderUtil {
         int size = symmetricalAlg.length * modePadding.length;
         Object[][] tmp_all = new Object[size][];
 
-        for (int i = 0; i < symmetricalAlg.length; i++) {
-            for (int j = 0; j < modePadding.length; j++) {
-                tmp_all[--size] = new Object[]{symmetricalAlg[i], modePadding[j]};
+        for (Object value : symmetricalAlg) {
+            for (Object o : modePadding) {
+                tmp_all[--size] = new Object[]{value, o};
             }
         }
         return tmp_all;
@@ -670,9 +637,9 @@ public class DataProviderUtil {
         int size = symmKey.length * dn.length;
         Object[][] tmp_all = new Object[size][];
 
-        for (int i = 0; i < symmKey.length; i++) {
-            for (int j = 0; j < dn.length; j++) {
-                tmp_all[--size] = new Object[]{symmKey[i], dn[j]};
+        for (Object value : symmKey) {
+            for (Object o : dn) {
+                tmp_all[--size] = new Object[]{value, o};
             }
         }
         return tmp_all;
@@ -680,29 +647,25 @@ public class DataProviderUtil {
 
     /**
      * 非对称加密填充模式
-     *
-     * @return
      */
     public static Object[] asymmModeAndPadding() {
         List<String> list = new ArrayList<>();
         list.add("RSA");
         list.add("RSA/ECB/PKCS1Padding");
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 
     /**
      * 组合非对称加密填充模式及证书DN
-     *
-     * @return
      */
     public static Object[][] asymmModeAndPaddingWithDN() {
         Object[] modeAndPadding = asymmModeAndPadding();
         String[] keystoreDN = getKeystoreDN();
         int size = modeAndPadding.length * keystoreDN.length;
         Object[][] tmp = new Object[size][];
-        for (int i = 0; i < modeAndPadding.length; i++) {
-            for (int j = 0; j < keystoreDN.length; j++) {
-                tmp[--size] = new Object[]{modeAndPadding[i], keystoreDN[j]};
+        for (Object o : modeAndPadding) {
+            for (String s : keystoreDN) {
+                tmp[--size] = new Object[]{o, s};
             }
         }
         return tmp;
@@ -719,16 +682,17 @@ public class DataProviderUtil {
      */
     public static Object[] getBase64CertAndAttr(String attr, String strpath, String keyType) {
         Object[] obj = getCert(strpath, keyType);
-        X509Certificate cert = null;
-        String base64cert = null;
+        X509Certificate cert;
+        String base64cert;
         String[] DNs = ParseCert.parseCertByAttributes(attr, strpath, keyType);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < obj.length; i++) {
             cert = (X509Certificate) obj[i];
             base64cert = ParseCert.getBase64Cert(cert);
+            assert DNs != null;
             list.add(DNs[i] + "%" + base64cert);
         }
-        return list.toArray(new Object[list.size()]);
+        return list.toArray(new Object[0]);
     }
 
 
@@ -741,8 +705,8 @@ public class DataProviderUtil {
      */
     public static Object[] getBase64CertAndBankCode(String strpath, String keyType) {
         Object[] obj = getCert(strpath, keyType);
-        X509Certificate cert = null;
-        String base64cert = null;
+        X509Certificate cert;
+        String base64cert;
         String[] bankCodes = ParseFile.parseBankCode(ParameterUtil.localdetailpath);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < obj.length; i++) {
@@ -750,7 +714,7 @@ public class DataProviderUtil {
             base64cert = ParseCert.getBase64Cert(cert);
             list.add(bankCodes[i] + "%" + base64cert);
         }
-        return list.toArray(new Object[list.size()]);
+        return list.toArray(new Object[0]);
     }
 
     /**
@@ -767,9 +731,9 @@ public class DataProviderUtil {
         int size = base64CertAndDN.length * symmetricalAlg.length;
         Object[][] obj = new Object[size][];
 
-        for (int i = 0; i < symmetricalAlg.length; i++) {
-            for (int j = 0; j < base64CertAndDN.length; j++) {
-                obj[--size] = new Object[]{symmetricalAlg[i], base64CertAndDN[j]};
+        for (Object value : symmetricalAlg) {
+            for (Object o : base64CertAndDN) {
+                obj[--size] = new Object[]{value, o};
             }
         }
         return obj;
@@ -778,14 +742,19 @@ public class DataProviderUtil {
 
     public static String[] getHashByType(String type) {
         String[] strings = null;
-        if (type.toLowerCase().equals("rsa")) {
-            strings = RSAHashArrays();
-        } else if (type.toLowerCase().equals("sm2")) {
-            strings = SM3HashArrays();
-        } else if (type.toLowerCase().equals("all")) {
-            strings = (String[]) getAlg();
-        } else {
-            Assert.fail("请正确输入摘要算法类型");
+        switch (type.toLowerCase()) {
+            case "rsa":
+                strings = RSAHashArrays();
+                break;
+            case "sm2":
+                strings = SM3HashArrays();
+                break;
+            case "all":
+                strings = (String[]) getAlg();
+                break;
+            default:
+                Assert.fail("请正确输入摘要算法类型");
+                break;
         }
         return strings;
     }
@@ -793,29 +762,31 @@ public class DataProviderUtil {
     /**
      * 获取RSA、SM2证书SN，及其对应的摘要算法
      *
-     * @param strpath
+     * @param strpath 证书路径
      * @return [alg, sn]
      */
     public static Object[][] resolveAlgSN(String strpath) {
         // 解析RSA证书，组合RSA数据源
         String[] rsaalg = RSAHashArrays();
         String[] signdn = ParseCert.parseCertByAttributes("SN", strpath, "rsa");
+        assert signdn != null;
         int size1 = rsaalg.length * signdn.length;
         Object[][] algdn_rsa = new Object[size1][];
-        for (int i = 0; i < rsaalg.length; i++) {
-            for (int j = 0; j < signdn.length; j++) {
-                algdn_rsa[--size1] = new Object[]{rsaalg[i], signdn[j]};
+        for (String item : rsaalg) {
+            for (String s : signdn) {
+                algdn_rsa[--size1] = new Object[]{item, s};
             }
         }
 
         // 解析国密证书，组合SM2数据源
         String[] sm3alg = SM3HashArrays();
         String[] sm2dn = ParseCert.parseCertByAttributes("SN", strpath, "sm2");
+        assert sm2dn != null;
         int size2 = sm3alg.length * sm2dn.length;
         Object[][] algdn_sm2 = new Object[size2][];
-        for (int i = 0; i < sm3alg.length; i++) {
-            for (int j = 0; j < sm2dn.length; j++) {
-                algdn_sm2[--size2] = new Object[]{sm3alg[i], sm2dn[j]};
+        for (String value : sm3alg) {
+            for (String s : sm2dn) {
+                algdn_sm2[--size2] = new Object[]{value, s};
             }
         }
 
@@ -826,21 +797,17 @@ public class DataProviderUtil {
             return algdn_sm2;
         } else if (algdn_sm2.length == 0) {
             return algdn_rsa;
-        } else if (algdn_rsa.length != 0 && algdn_sm2.length != 0) {
+        } else {
             System.arraycopy(algdn_rsa, 0, algdn, 0, algdn_rsa.length);
             System.arraycopy(algdn_sm2, 0, algdn, algdn_rsa.length, algdn_sm2.length);
-
             return algdn;
-        } else {
-            System.out.println("no dataprovider");
-            return null;
         }
     }
 
     /**
      * 获取RSA、SM2证书DN、摘要算法及公钥证书
      *
-     * @param strpath
+     * @param strpath 证书路径
      * @return [alg, dn , cert]
      */
     public static Object[][] resolveAlgDNCert(String strpath) {
@@ -848,19 +815,18 @@ public class DataProviderUtil {
         String[] rsaalg = RSAHashArrays();
         String[] signdn = ParseCert.parseCertByAttributes("DN", strpath, "rsa");
         ArrayList<X509Certificate> rsacert = ParseCert.getCert(strpath, "RSA");
-        String cert = null;
-        List<String> certList = new ArrayList<String>();
-        for (int i = 0; i < rsacert.size(); i++) {
-            cert = ParseCert.getBase64Cert(rsacert.get(i));
+        String cert;
+        List<String> certList = new ArrayList<>();
+        for (X509Certificate certificate : rsacert) {
+            cert = ParseCert.getBase64Cert(certificate);
             certList.add(cert);
         }
-//        String[] cert = ParseCert.getBase64Cert(rsacert[]);
-//        int size1 = rsaalg.length * signdn.length * certList.size();
+        assert signdn != null;
         int size1 = rsaalg.length * signdn.length;
         Object[][] algdn_rsa = new Object[size1][];
-        for (int i = 0; i < rsaalg.length; i++) {
+        for (String value : rsaalg) {
             for (int j = 0; j < signdn.length; j++) {
-                algdn_rsa[--size1] = new Object[]{rsaalg[i], signdn[j], certList.get(j)};
+                algdn_rsa[--size1] = new Object[]{value, signdn[j], certList.get(j)};
             }
         }
 
@@ -868,18 +834,18 @@ public class DataProviderUtil {
         String[] sm3alg = SM3HashArrays();
         String[] sm2dn = ParseCert.parseCertByAttributes("DN", strpath, "sm2");
         ArrayList<X509Certificate> sm2cert = ParseCert.getCert(strpath, "SM2");
-        String sm2cert2 = null;
-        List<String> certList2 = new ArrayList<String>();
-        for (int i = 0; i < sm2cert.size(); i++) {
-            sm2cert2 = ParseCert.getBase64Cert(sm2cert.get(i));
+        String sm2cert2;
+        List<String> certList2 = new ArrayList<>();
+        for (X509Certificate x509Certificate : sm2cert) {
+            sm2cert2 = ParseCert.getBase64Cert(x509Certificate);
             certList2.add(sm2cert2);
         }
-//        int size2 = sm3alg.length * sm2dn.length * certList2.size();
+        assert sm2dn != null;
         int size2 = sm3alg.length * sm2dn.length;
         Object[][] algdn_sm2 = new Object[size2][];
-        for (int i = 0; i < sm3alg.length; i++) {
+        for (String s : sm3alg) {
             for (int j = 0; j < sm2dn.length; j++) {
-                algdn_sm2[--size2] = new Object[]{sm3alg[i], sm2dn[j], certList2.get(j)};
+                algdn_sm2[--size2] = new Object[]{s, sm2dn[j], certList2.get(j)};
             }
         }
 
@@ -890,14 +856,10 @@ public class DataProviderUtil {
             return algdn_sm2;
         } else if (algdn_sm2.length == 0) {
             return algdn_rsa;
-        } else if (algdn_rsa.length != 0 && algdn_sm2.length != 0) {
+        } else {
             System.arraycopy(algdn_rsa, 0, algdn, 0, algdn_rsa.length);
             System.arraycopy(algdn_sm2, 0, algdn, algdn_rsa.length, algdn_sm2.length);
-
             return algdn;
-        } else {
-            System.out.println("no dataprovider");
-            return null;
         }
     }
 
@@ -913,89 +875,93 @@ public class DataProviderUtil {
      * @param length   对称算法组长度：length=0返回所有对称加密算法，
      *                 length=8返回des/3des/rc2/rc4对称加密算法，
      *                 length=16返回aes/sm4对称加密算法
-     * @return
      */
     public static Object[][] composeCertAttrWithAlg(String attr, boolean isDalg, boolean isSalg,
                                                     String certpath, String type, int length) {
-        String[] certStrs = null;
-        String[] dAlgs = null;
-        String[] sAlgs = null;
+        String[] certStrs;
+        String[] dAlgs;
+        String[] sAlgs;
         // 组合证书属性及摘要算法对称算法
-        if (attr != null && attr.length() != 0 && isDalg == true && isSalg == true) {
+        if (attr != null && attr.length() != 0 && isDalg && isSalg) {
             certStrs = ParseCert.parseCertByAttributes(attr, certpath, type);
             dAlgs = getHashByType(type);
             sAlgs = (String[]) getSymmetricalAlg(length);
+            assert certStrs != null;
             int size = certStrs.length * dAlgs.length * sAlgs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int i = 0; i < sAlgs.length; i++) {
-                for (int j = 0; j < dAlgs.length; j++) {
-                    for (int k = 0; k < certStrs.length; k++) {
-                        tmp[--size] = new Object[]{certStrs[k], dAlgs[j], sAlgs[i]};
+            for (String sAlg : sAlgs) {
+                for (String dAlg : dAlgs) {
+                    for (String certStr : certStrs) {
+                        tmp[--size] = new Object[]{certStr, dAlg, sAlg};
                     }
                 }
             }
             return tmp;
         }
         // 组合证书属性及摘要算法
-        if (attr != null && attr.length() != 0 && isDalg == true && isSalg == false) {
+        if (attr != null && attr.length() != 0 && isDalg) {
             certStrs = ParseCert.parseCertByAttributes(attr, certpath, type);
             dAlgs = getHashByType(type);
+            assert certStrs != null;
             int size = certStrs.length * dAlgs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int j = 0; j < dAlgs.length; j++) {
-                for (int k = 0; k < certStrs.length; k++) {
-                    tmp[--size] = new Object[]{certStrs[k], dAlgs[j]};
+            for (String dAlg : dAlgs) {
+                for (String certStr : certStrs) {
+                    tmp[--size] = new Object[]{certStr, dAlg};
                 }
             }
             return tmp;
         }
         // 组合证书属性及对称算法
-        if (attr != null && attr.length() != 0 && isDalg == false && isSalg == true) {
+        if (attr != null && attr.length() != 0 && isSalg) {
             certStrs = ParseCert.parseCertByAttributes(attr, certpath, type);
             sAlgs = (String[]) getSymmetricalAlg(length);
+            assert certStrs != null;
             int size = certStrs.length * sAlgs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int i = 0; i < sAlgs.length; i++) {
-                for (int k = 0; k < certStrs.length; k++) {
-                    tmp[--size] = new Object[]{certStrs[k], sAlgs[i]};
+            for (String sAlg : sAlgs) {
+                for (String certStr : certStrs) {
+                    tmp[--size] = new Object[]{certStr, sAlg};
                 }
             }
             return tmp;
         }
         // 仅返回证书属性
-        if (attr != null && attr.length() != 0 && isDalg == false && isSalg == false) {
+        if (attr != null && attr.length() != 0) {
             certStrs = ParseCert.parseCertByAttributes(attr, certpath, type);
+            assert certStrs != null;
             int size = certStrs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int k = 0; k < certStrs.length; k++) {
-                tmp[--size] = new Object[]{certStrs[k]};
+            for (String certStr : certStrs) {
+                tmp[--size] = new Object[]{certStr};
+                System.out.println(certStr);
             }
             return tmp;
         }
         // 仅返回摘要算法
-        if (attr == null && isDalg == true && isSalg == false) {
+        if (attr == null && isDalg) {
             dAlgs = getHashByType(type);
             int size = dAlgs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int j = 0; j < dAlgs.length; j++) {
-                tmp[--size] = new Object[]{dAlgs[j]};
+            for (String dAlg : dAlgs) {
+                tmp[--size] = new Object[]{dAlg};
             }
             return tmp;
         }
 
         // 仅返回对称算法
-        if (attr == null && isDalg == false && isSalg == true) {
+        if (attr == null && isSalg) {
             sAlgs = (String[]) getSymmetricalAlg(length);
             int size = sAlgs.length;
             Object[][] tmp = new Object[size][];
 
-            for (int i = 0; i < sAlgs.length; i++) {
-                tmp[--size] = new Object[]{sAlgs[i]};
+            for (String sAlg : sAlgs) {
+                tmp[--size] = new Object[]{sAlg};
             }
             return tmp;
         }
@@ -1008,22 +974,18 @@ public class DataProviderUtil {
         String[] hashByType = getHashByType(keyType);
         int size = base64CertAndDN.length * hashByType.length;
         Object[][] tmp = new Object[size][];
-        for (int i = 0; i < hashByType.length; i++) {
-            for (int j = 0; j < base64CertAndDN.length; j++) {
-                tmp[--size] = new Object[]{base64CertAndDN[j], hashByType[i]};
-                System.out.println(base64CertAndDN[j]);
-                System.out.println(hashByType[i]);
+        for (String s : hashByType) {
+            for (Object o : base64CertAndDN) {
+                tmp[--size] = new Object[]{o, s};
             }
         }
         return tmp;
     }
 
     public static void main(String[] args) {
-        Object[] alls = getCert(ParameterUtil.revokepath, "rsa");
-        X509Certificate cert = null;
-        for (int i = 0; i < alls.length ; i++) {
-            cert = (X509Certificate) alls[i];
-            System.out.println(cert.getSubjectDN().getName());
+        String[] strings = RSAHashArrays();
+        for (String s : strings) {
+            System.out.println(s);
         }
     }
 }
