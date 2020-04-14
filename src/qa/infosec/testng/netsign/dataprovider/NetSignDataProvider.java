@@ -1417,6 +1417,7 @@ public class NetSignDataProvider {
         return DataProviderUtil.getCert(ParameterUtil.revokepath,"sm2");
     }
 
+
 //    /**
 //     * 获取正常RSA证书DN、Base64信息以及摘要算法
 //     * @return [dn%base64Cert,dalg]

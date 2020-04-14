@@ -983,9 +983,10 @@ public class DataProviderUtil {
 
     /**
      * 组合X509证书及摘要算法，根据类型分别返回rsa/sm2证书+摘要算法
+     *
      * @param strpath 证书路径
      * @param keyType 证书类型
-     * @return [X509Cert,dAlg]
+     * @return [X509Cert, dAlg]
      */
     public static Object[][] getX509CertWithDAlg(String strpath, String keyType) {
         Object[] cert = getCert(strpath, keyType);
