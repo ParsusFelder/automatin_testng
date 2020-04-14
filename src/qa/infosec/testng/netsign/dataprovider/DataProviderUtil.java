@@ -441,7 +441,6 @@ public class DataProviderUtil {
 
     /**
      * 获取对称密钥及密钥类型 ivEmpty = true 不反回含有/ECB的填充模式及RC4/RC2对称密钥算法
-     *
      */
     public static Object[] getSymmKeyAndAlg(int ivLength, boolean ivEmpty) {
         String key_length_8 = Utils.getRandomString(8);
@@ -969,13 +968,33 @@ public class DataProviderUtil {
     }
 
 
-    public static Object[][] getBase64CertAndAttrWithSAlg(String attr, String strpath, String keyType) {
+    public static Object[][] getBase64CertAndAttrWithDAlg(String attr, String strpath, String keyType) {
         Object[] base64CertAndDN = getBase64CertAndAttr(attr, strpath, keyType);
         String[] hashByType = getHashByType(keyType);
         int size = base64CertAndDN.length * hashByType.length;
         Object[][] tmp = new Object[size][];
         for (String s : hashByType) {
             for (Object o : base64CertAndDN) {
+                tmp[--size] = new Object[]{o, s};
+            }
+        }
+        return tmp;
+    }
+
+    /**
+     * 组合X509证书及摘要算法，根据类型分别返回rsa/sm2证书+摘要算法
+     * @param strpath 证书路径
+     * @param keyType 证书类型
+     * @return [X509Cert,dAlg]
+     */
+    public static Object[][] getX509CertWithDAlg(String strpath, String keyType) {
+        Object[] cert = getCert(strpath, keyType);
+        String[] hashByType = getHashByType(keyType);
+        int size = cert.length * hashByType.length;
+
+        Object[][] tmp = new Object[size][];
+        for (String s : hashByType) {
+            for (Object o : cert) {
                 tmp[--size] = new Object[]{o, s};
             }
         }
