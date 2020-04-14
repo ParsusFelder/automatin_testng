@@ -31,7 +31,7 @@ import java.util.Map;
  * <p>9）密文为空字符</p>
  * <p>10）证书为空字符</p>
  */
-@Test(groups = "abcjew.rawverifybybase64cert")
+@Test(groups = "abcjew.rawverifybyx509cert")
 public class TestRawVerifyByX509Cert {
     static String ip, port, password;
     static String host, sftp_port, sftp_password, sftp_user;
@@ -60,7 +60,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用RSA证书验签名，证书状态正常
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_01(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用RSA证书验签名，证书状态正常");
@@ -83,7 +83,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用RSA证书验签名，证书状态过期
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "expire-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "expire-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_02(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用RSA证书验签名，证书状态过期");
@@ -106,7 +106,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用RSA证书验签名，证书状态作废
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "revoke-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "revoke-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_03(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用RSA证书验签名，证书状态作废");
@@ -132,7 +132,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用SM2证书验签名，证书状态正常
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-sm2-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-sm2-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_04(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用SM2证书验签名，证书状态正常");
@@ -155,7 +155,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用SM2证书验签名，证书状态过期
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "expire-sm2-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "expire-sm2-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_05(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用SM2证书验签名，证书状态过期");
@@ -178,7 +178,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 使用SM2证书验签名，证书状态作废
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "revoke-sm2-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "revoke-sm2-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_06(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：使用SM2证书验签名，证书状态作废");
@@ -201,7 +201,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 原文为null
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_07(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：原文为null");
@@ -224,7 +224,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 密文为null
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_08(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：密文为null");
@@ -247,7 +247,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 密文为空字符
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_09(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：密文为空字符");
@@ -270,7 +270,7 @@ public class TestRawVerifyByX509Cert {
     /**
      * 证书为空字符
      */
-    @Test(groups = "abcjew.rawverifybybase64cert.normal", dataProvider = "normal-rsa-cert",
+    @Test(groups = "abcjew.rawverifybyx509cert.normal", dataProvider = "normal-rsa-cert",
             dataProviderClass = NetSignDataProvider.class)
     public void testRawVerifyByX509Cert_10(X509Certificate cert) {
         System.out.println("传证书内容验裸签（rawVerify）：密文为空字符");
