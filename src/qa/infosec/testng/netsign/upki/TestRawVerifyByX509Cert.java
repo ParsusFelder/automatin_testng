@@ -31,6 +31,7 @@ import java.util.Map;
  * <p>9）密文为空字符</p>
  * <p>10）证书为空字符</p>
  */
+@Test(groups = "abcjew.rawverifybybase64cert")
 public class TestRawVerifyByX509Cert {
     static String ip, port, password;
     static String host, sftp_port, sftp_password, sftp_user;
