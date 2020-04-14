@@ -1364,142 +1364,243 @@ public class NetSignDataProvider {
     }
 
     /**
-     * 获取正常RSA证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
+     * 获取正常RSA证书实体
+     * @return x509Cert
      */
-    @DataProvider(name = "normal-rsa-dn-base64-dalg")
-    public static Object[][] normalRSABase64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.normalpath,"rsa");
-    }
-    /**
-     * 获取过期RSA证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "expire-rsa-dn-base64-dalg")
-    public static Object[][] expireRSABase64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.expirepath,"rsa");
-    }
-    /**
-     * 获取作废RSA证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "revoke-rsa-dn-base64-dalg")
-    public static Object[][] revokeRSABase64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.revokepath,"rsa");
-    }
-    /**
-     * 获取不受信任RSA证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "nottrust-rsa-dn-base64-dalg")
-    public static Object[][] nottrustRSABase64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.nottrustpath,"rsa");
+    @DataProvider(name = "normal-rsa-cert")
+    public static Object[] normalRSACert(){
+        return DataProviderUtil.getCert(ParameterUtil.normalpath,"rsa");
     }
 
     /**
-     * 获取正常RSA证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
+     * 获取过期RSA证书实体
+     * @return x509Cert
      */
-    @DataProvider(name = "normal-rsa-sn-base64-dalg")
-    public static Object[][] normalRSABase64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.normalpath,"rsa");
-    }
-    /**
-     * 获取过期RSA证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "expire-rsa-sn-base64-dalg")
-    public static Object[][] expireRSABase64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.expirepath,"rsa");
-    }
-    /**
-     * 获取作废RSA证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "revoke-rsa-sn-base64-dalg")
-    public static Object[][] revokeRSABase64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.revokepath,"rsa");
-    }
-    /**
-     * 获取不受信任RSA证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "nottrust-rsa-sn-base64-dalg")
-    public static Object[][] nottrustRSABase64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.nottrustpath,"rsa");
+    @DataProvider(name = "expire-rsa-cert")
+    public static Object[] expireRSACert(){
+        return DataProviderUtil.getCert(ParameterUtil.expirepath,"rsa");
     }
 
     /**
-     * 获取正常SM2证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
+     * 获取作废RSA证书实体
+     * @return x509Cert
      */
-    @DataProvider(name = "normal-sm2-dn-base64-dalg")
-    public static Object[][] normalSM2Base64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.normalpath,"sm2");
-    }
-    /**
-     * 获取过期SM2证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "expire-sm2-dn-base64-dalg")
-    public static Object[][] expireSM2Base64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.expirepath,"sm2");
-    }
-    /**
-     * 获取作废SM2证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "revoke-sm2-dn-base64-dalg")
-    public static Object[][] revokeSM2Base64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.revokepath,"sm2");
-    }
-    /**
-     * 获取不受信任SM2证书DN、Base64信息以及摘要算法
-     * @return [dn%base64Cert,dalg]
-     */
-    @DataProvider(name = "nottrust-sm2-dn-base64-dalg")
-    public static Object[][] nottrustSM2Base64CertAndDNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.nottrustpath,"sm2");
+    @DataProvider(name = "revoke-rsa-cert")
+    public static Object[] revokeRSACert(){
+        return DataProviderUtil.getCert(ParameterUtil.revokepath,"rsa");
     }
 
     /**
-     * 获取正常SM2证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
+     * 获取正常SM2证书实体
+     * @return x509Cert
      */
-    @DataProvider(name = "normal-sm2-sn-base64-dalg")
-    public static Object[][] normalSM2Base64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.normalpath,"sm2");
-    }
-    /**
-     * 获取过期SM2证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "expire-sm2-sn-base64-dalg")
-    public static Object[][] expireSM2Base64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.expirepath,"sm2");
-    }
-    /**
-     * 获取作废SM2证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "revoke-sm2-sn-base64-dalg")
-    public static Object[][] revokeSM2Base64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.revokepath,"sm2");
-    }
-    /**
-     * 获取不受信任SM2证书SN、Base64信息以及摘要算法
-     * @return [sn%base64Cert,dalg]
-     */
-    @DataProvider(name = "nottrust-sm2-sn-base64-dalg")
-    public static Object[][] nottrustSM2Base64CertAndSNWithDAlg(){
-        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.nottrustpath,"sm2");
+    @DataProvider(name = "normal-sm2-cert")
+    public static Object[] normalSM2Cert(){
+        return DataProviderUtil.getCert(ParameterUtil.normalpath,"sm2");
     }
 
     /**
-     * 获取正常RSAx509证书以及摘要算法
-     * @return [x509Cert,dalg]
+     * 获取过期SM2证书实体
+     * @return x509Cert
      */
-    public static Object[][] normalRSACertWithDAlg(){
-        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"rsa");
+    @DataProvider(name = "expire-sm2-cert")
+    public static Object[] expireSM2Cert(){
+        return DataProviderUtil.getCert(ParameterUtil.expirepath,"sm2");
     }
+
+    /**
+     * 获取作废SM2证书实体
+     * @return x509Cert
+     */
+    @DataProvider(name = "revoke-sm2-cert")
+    public static Object[] revokeSM2Cert(){
+        return DataProviderUtil.getCert(ParameterUtil.revokepath,"sm2");
+    }
+
+//    /**
+//     * 获取正常RSA证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-rsa-dn-base64-dalg")
+//    public static Object[][] normalRSABase64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.normalpath,"rsa");
+//    }
+//    /**
+//     * 获取过期RSA证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-rsa-dn-base64-dalg")
+//    public static Object[][] expireRSABase64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.expirepath,"rsa");
+//    }
+//    /**
+//     * 获取作废RSA证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-rsa-dn-base64-dalg")
+//    public static Object[][] revokeRSABase64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.revokepath,"rsa");
+//    }
+//    /**
+//     * 获取不受信任RSA证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "nottrust-rsa-dn-base64-dalg")
+//    public static Object[][] nottrustRSABase64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.nottrustpath,"rsa");
+//    }
+//
+//    /**
+//     * 获取正常RSA证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-rsa-sn-base64-dalg")
+//    public static Object[][] normalRSABase64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.normalpath,"rsa");
+//    }
+//    /**
+//     * 获取过期RSA证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-rsa-sn-base64-dalg")
+//    public static Object[][] expireRSABase64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.expirepath,"rsa");
+//    }
+//    /**
+//     * 获取作废RSA证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-rsa-sn-base64-dalg")
+//    public static Object[][] revokeRSABase64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.revokepath,"rsa");
+//    }
+//    /**
+//     * 获取不受信任RSA证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "nottrust-rsa-sn-base64-dalg")
+//    public static Object[][] nottrustRSABase64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.nottrustpath,"rsa");
+//    }
+//
+//    /**
+//     * 获取正常SM2证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-sm2-dn-base64-dalg")
+//    public static Object[][] normalSM2Base64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.normalpath,"sm2");
+//    }
+//    /**
+//     * 获取过期SM2证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-sm2-dn-base64-dalg")
+//    public static Object[][] expireSM2Base64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.expirepath,"sm2");
+//    }
+//    /**
+//     * 获取作废SM2证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-sm2-dn-base64-dalg")
+//    public static Object[][] revokeSM2Base64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.revokepath,"sm2");
+//    }
+//    /**
+//     * 获取不受信任SM2证书DN、Base64信息以及摘要算法
+//     * @return [dn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "nottrust-sm2-dn-base64-dalg")
+//    public static Object[][] nottrustSM2Base64CertAndDNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("DN",ParameterUtil.nottrustpath,"sm2");
+//    }
+//
+//    /**
+//     * 获取正常SM2证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-sm2-sn-base64-dalg")
+//    public static Object[][] normalSM2Base64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.normalpath,"sm2");
+//    }
+//    /**
+//     * 获取过期SM2证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-sm2-sn-base64-dalg")
+//    public static Object[][] expireSM2Base64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.expirepath,"sm2");
+//    }
+//    /**
+//     * 获取作废SM2证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-sm2-sn-base64-dalg")
+//    public static Object[][] revokeSM2Base64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.revokepath,"sm2");
+//    }
+//    /**
+//     * 获取不受信任SM2证书SN、Base64信息以及摘要算法
+//     * @return [sn%base64Cert,dalg]
+//     */
+//    @DataProvider(name = "nottrust-sm2-sn-base64-dalg")
+//    public static Object[][] nottrustSM2Base64CertAndSNWithDAlg(){
+//        return DataProviderUtil.getBase64CertAndAttrWithDAlg("SN",ParameterUtil.nottrustpath,"sm2");
+//    }
+//
+//    /**
+//     * 获取正常RSAx509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-rsa-cert-dalg")
+//    public static Object[][] normalRSACertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"rsa");
+//    }
+//
+//    /**
+//     * 获取过期RSAx509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-rsa-cert-dalg")
+//    public static Object[][] expireRSACertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"rsa");
+//    }
+//
+//    /**
+//     * 获取作废RSAx509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-rsa-cert-dalg")
+//    public static Object[][] revokeRSACertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"rsa");
+//    }
+//
+//    /**
+//     * 获取正常SM2x509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "normal-sm2-cert-dalg")
+//    public static Object[][] normalSM2CertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"sm2");
+//    }
+//
+//    /**
+//     * 获取过期SM2x509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "expire-sm2-cert-dalg")
+//    public static Object[][] expireSM2CertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"sm2");
+//    }
+//
+//    /**
+//     * 获取作废SM2x509证书以及摘要算法
+//     * @return [x509Cert,dalg]
+//     */
+//    @DataProvider(name = "revoke-sm2-cert-dalg")
+//    public static Object[][] revokeSM2CertWithDAlg(){
+//        return DataProviderUtil.getX509CertWithDAlg(ParameterUtil.normalpath,"sm2");
+//    }
+   
 }
