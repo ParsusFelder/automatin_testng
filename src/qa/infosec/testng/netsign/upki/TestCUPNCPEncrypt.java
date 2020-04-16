@@ -21,17 +21,13 @@ import java.util.Random;
  * @date 2020-03-02 18:20
  * @Description: 银联无卡支付加密
  * <p>用例覆盖点：</p>
- * <p>1）</p>
- * <p>2）</p>
- * <p>3）</p>
- * <p>4）</p>
- * <p>5）</p>
- * <p>6）</p>
- * <p>7）</p>
- * <p>8）</p>
- * <p>9）</p>
- * <p>10）</p>
- * <p>11）</p>
+ * <p>1）银联无卡支付加密，传证书DN</p>
+ * <p>2）银联无卡支付加密，传证书SN</p>
+ * <p>3）银联无卡支付加密，对称算法为null</p>
+ * <p>4）银联无卡支付加密，对称算法为空字符</p>
+ * <p>5）银联无卡支付加密，证书DN为空或null</p>
+ * <p>6）银联无卡支付加密，原文为null</p>
+ * <p>7）银联无卡支付加密，原文过大</p>
  */
 @Test(groups = "abcjew.cupncpencrypt")
 public class TestCUPNCPEncrypt {

@@ -65,10 +65,10 @@ public class Utils {
     }
 
     private static String turnDNString(String dn) {
-        if (dn.indexOf(",") < 0)
+        if (!dn.contains(","))
             return dn;
         else {
-            String split = (dn.indexOf(", ") > -1) ? ", " : ",";
+            String split = (dn.indexOf(", ") <= -1) ? "{2}," : ", ";
             String[] pieces = dn.split(split);
             String tmp = "";
             for (int i = pieces.length - 1; i >= 0; i--) {
@@ -336,7 +336,7 @@ public class Utils {
     }
 
     public static void main(String[] args) {
-        byte[] sha1s = getDigest("SM3", "11111111".getBytes());
+        byte[] sha1s = getDigest("SHA256", "11111111".getBytes());
         String encode = Base64.encode(sha1s);
         String s = Utils.toHexString(Base64.decode(encode));
         System.out.println(s);
