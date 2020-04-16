@@ -366,7 +366,7 @@ public class NetSignDataProvider {
      * @return 【String】
      */
     @DataProvider(name = "emptys-parameter")
-    public static Object[] Emptys() {
+    public static Object[] emptys() {
         return DataProviderUtil.Emptys();
     }
 
@@ -410,7 +410,7 @@ public class NetSignDataProvider {
      * @return 【symmKeyAlg,modePadding】
      */
     @DataProvider(name = "symmKeyAlg-all-modepadding")
-    public static Object[][] SymmKeyAllAndModePadding() {
+    public static Object[][] symmKeyAllAndModePadding() {
         return DataProviderUtil.symmKeyAndModePadding(0, false);
     }
 
@@ -421,7 +421,7 @@ public class NetSignDataProvider {
      * @return 【symmKeyAlg,modePadding】
      */
     @DataProvider(name = "symmKeyAlg-8-modepadding")
-    public static Object[][] SymmKeyDESor3DESAndModePadding() {
+    public static Object[][] symmKeyDESor3DESAndModePadding() {
         return DataProviderUtil.symmKeyAndModePadding(8, false);
     }
 
@@ -468,7 +468,7 @@ public class NetSignDataProvider {
      * @return 【symmKeyAlg,modePadding】
      */
     @DataProvider(name = "symmKeyAlg-16-modepadding-ivEmpty")
-    public static Object[][] SymmKeySM4orAESAndModePaddingIVEmpty() {
+    public static Object[][] symmKeySM4orAESAndModePaddingIVEmpty() {
         return DataProviderUtil.symmKeyAndModePadding(16, true);
     }
 
@@ -479,7 +479,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data】
      */
     @DataProvider(name = "keylable-type-data-0")
-    public static Object[] SKeyLableAndTypeAndDataALL() {
+    public static Object[] sKeyLableAndTypeAndDataALL() {
         return DataProviderUtil.getKeyLbAndTpAndData(0);
     }
 
@@ -490,7 +490,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data】
      */
     @DataProvider(name = "keylable-type-data-8")
-    public static Object[] SKeyLableAndTypeAndDataIv8() {
+    public static Object[] sKeyLableAndTypeAndDataIv8() {
         return DataProviderUtil.getKeyLbAndTpAndData(8);
     }
 
@@ -501,7 +501,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data】
      */
     @DataProvider(name = "keylable-type-data-16")
-    public static Object[] SKeyLableAndTypeAndDataIv16() {
+    public static Object[] sKeyLableAndTypeAndDataIv16() {
         return DataProviderUtil.getKeyLbAndTpAndData(16);
     }
 
@@ -513,7 +513,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data,modeAndPadding】
      */
     @DataProvider(name = "keylable-type-data-16-modepadding")
-    public static Object[][] SymmkeyIv16AndModePadding() {
+    public static Object[][] symmkeyIv16AndModePadding() {
         return DataProviderUtil.symmKeyWithModePadding(16, true);
     }
 
@@ -525,7 +525,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data,modeAndPadding】
      */
     @DataProvider(name = "keylable-type-data-8-modepadding")
-    public static Object[][] SymmkeyIv8AndModePadding() {
+    public static Object[][] symmkeyIv8AndModePadding() {
         return DataProviderUtil.symmKeyWithModePadding(8, true);
     }
 
@@ -537,7 +537,7 @@ public class NetSignDataProvider {
      * @return 【keylable&type&data,modeAndPadding】
      */
     @DataProvider(name = "keylable-type-data-0-modepadding")
-    public static Object[][] SymmkeyAllAndModePadding() {
+    public static Object[][] symmkeyAllAndModePadding() {
         return DataProviderUtil.symmKeyWithModePadding(0, true);
     }
 
@@ -547,7 +547,7 @@ public class NetSignDataProvider {
      * ivlength = 8 对称密钥类型为DES/3DES对称密钥及算法
      */
     @DataProvider(name = "alg-8-modepadding")
-    public static Object[][] AlgAndModePaddingIv8() {
+    public static Object[][] algAndModePaddingIv8() {
         return DataProviderUtil.AlgWithModePadding(8, true);
     }
 
@@ -557,7 +557,7 @@ public class NetSignDataProvider {
      * ivlength = 16 对称密钥类型为AES/SM4对称密钥及算法
      */
     @DataProvider(name = "alg-16-modepadding")
-    public static Object[][] AlgAndModePaddingIv16() {
+    public static Object[][] algAndModePaddingIv16() {
         return DataProviderUtil.AlgWithModePadding(16, true);
     }
 
@@ -567,7 +567,7 @@ public class NetSignDataProvider {
      * ivlength = 0 对称密钥类型为AES/SM4/DES/3DES对称密钥及算法
      */
     @DataProvider(name = "alg-all-modepadding")
-    public static Object[][] AlgAndModePaddingAll() {
+    public static Object[][] algAndModePaddingAll() {
         return DataProviderUtil.AlgWithModePadding(0, true);
     }
 
@@ -576,7 +576,7 @@ public class NetSignDataProvider {
      * ivlength = 8 对称密钥类型为DES/3DES对称密钥及算法
      */
     @DataProvider(name = "symmkey-8-dn")
-    public static Object[][] SymmKeyIv8AndDN() {
+    public static Object[][] symmKeyIv8AndDN() {
         return DataProviderUtil.symmKeyWithDN(8);
     }
 
@@ -585,7 +585,7 @@ public class NetSignDataProvider {
      * ivlength = 8 对称密钥类型为SM4/AES对称密钥及算法
      */
     @DataProvider(name = "symmkey-16-dn")
-    public static Object[][] SymmKeyIv16AndDN() {
+    public static Object[][] symmKeyIv16AndDN() {
         return DataProviderUtil.symmKeyWithDN(16);
     }
 
@@ -594,7 +594,7 @@ public class NetSignDataProvider {
      * ivlength = 0 对称密钥类型为SM4/AES/DES/3DES对称密钥及算法
      */
     @DataProvider(name = "symmkey-0-dn")
-    public static Object[][] SymmKeyAllAndDN() {
+    public static Object[][] symmKeyAllAndDN() {
         return DataProviderUtil.symmKeyWithDN(0);
     }
 //===========================================facePayment1.6新增======================================================
@@ -605,7 +605,7 @@ public class NetSignDataProvider {
      * @return 【modeAndpadding,dn】
      */
     @DataProvider(name = "modepadding-dn")
-    public static Object[][] AsymmModeAndPaddingWithDN() {
+    public static Object[][] asymmModeAndPaddingWithDN() {
         return DataProviderUtil.asymmModeAndPaddingWithDN();
     }
 //===========================================bcm1.1新增==============================================================
@@ -616,7 +616,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "rsadn-normal-alg")
-    public static Object[][] RSANormalCertDNAndAlg() {
+    public static Object[][] rsaNormalCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.normalpath, "rsa", 0);
     }
 
@@ -626,7 +626,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "rsadn-expire-alg")
-    public static Object[][] RSAExpireCertDNAndAlg() {
+    public static Object[][] rsaExpireCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.expirepath, "rsa", 0);
     }
 
@@ -636,7 +636,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "rsadn-revoke-alg")
-    public static Object[][] RSARevokeCertDNAndAlg() {
+    public static Object[][] rsaRevokeCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.revokepath, "rsa", 0);
     }
 
@@ -646,7 +646,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "rsadn-nottrust-alg")
-    public static Object[][] RSANottrustCertDNAndAlg() {
+    public static Object[][] rsaNottrustCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.nottrustpath, "rsa", 0);
     }
 
@@ -656,7 +656,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "sm2dn-normal-alg")
-    public static Object[][] SM2NormalCertDNAndAlg() {
+    public static Object[][] sm2NormalCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.normalpath, "sm2", 0);
     }
 
@@ -666,7 +666,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "sm2dn-expire-alg")
-    public static Object[][] SM2ExpireCertDNAndAlg() {
+    public static Object[][] sm2ExpireCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.expirepath, "sm2", 0);
     }
 
@@ -676,7 +676,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "sm2dn-revoke-alg")
-    public static Object[][] SM2RevokeCertDNAndAlg() {
+    public static Object[][] sm2RevokeCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.revokepath, "sm2", 0);
     }
 
@@ -686,7 +686,7 @@ public class NetSignDataProvider {
      * @return [dn, alg]
      */
     @DataProvider(name = "sm2dn-nottrust-alg")
-    public static Object[][] SM2NottrustCertDNAndAlg() {
+    public static Object[][] sm2NottrustCertDNAndAlg() {
         return DataProviderUtil.composeCertAttrWithAlg("DN", true, false, ParameterUtil.nottrustpath, "sm2", 0);
     }
 //===========================================abcjew2.8新增==============================================================
@@ -826,6 +826,15 @@ public class NetSignDataProvider {
     }
 
     /**
+     * 获取所有证书的DN,对称算法为3DES/DES/RC2/RC4/SM4/AES
+     * @return [dn,salg]
+     */
+    @DataProvider(name = "salg-0-alldn")
+    public static Object[][] getSAlgAllWithCertDN() {
+        return DataProviderUtil.composeCertAttrWithAlg("DN", false, true, ParameterUtil.allcertpath, "all", 0);
+    }
+
+    /**
      * 获取所有证书的SN,对称算法为SM4/AES
      * @return [sn,salg]
      */
@@ -834,6 +843,14 @@ public class NetSignDataProvider {
         return DataProviderUtil.composeCertAttrWithAlg("SN", false, true, ParameterUtil.allcertpath, "all", 16);
     }
 
+    /**
+     * 获取所有证书的DN,对称算法为3DES/DES/RC2/RC4/SM4/AES
+     * @return [dn,salg]
+     */
+    @DataProvider(name = "salg-0-allsn")
+    public static Object[][] getSAlgAllWithCertSN() {
+        return DataProviderUtil.composeCertAttrWithAlg("SN", false, true, ParameterUtil.allcertpath, "all", 0);
+    }
     /**
      * 获取所有证书的bankcode,对称算法为SM4/AES
      * @return [bankcode,salg]
@@ -859,6 +876,15 @@ public class NetSignDataProvider {
     @DataProvider(name = "normal-rsa-dn-dalg-0")
     public static Object[][] normalRsaCertDN(){
         return DataProviderUtil.composeCertAttrWithAlg("dn", true, true, ParameterUtil.normalpath, "rsa", 0);
+    }
+
+    /**
+     * 获取所有证书DN
+     * @return [dn]
+     */
+    @DataProvider(name = "all-cert-dn")
+    public static Object[][] allCertDN(){
+        return DataProviderUtil.composeCertAttrWithAlg("dn", false, false, ParameterUtil.allcertpath, "all", 0);
     }
 
     /**
@@ -1132,7 +1158,7 @@ public class NetSignDataProvider {
      * @return 【alg，dn ，cert】
      */
     @DataProvider(name = "normal-alg-dn-cert")
-    public static Object[][] NormalAlgDNCert(){
+    public static Object[][] normalAlgDNCert(){
         return DataProviderUtil.resolveAlgDNCert(ParameterUtil.normalpath);
     }
 
@@ -1143,7 +1169,7 @@ public class NetSignDataProvider {
      * @return 【dn】
      */
     @DataProvider(name = "normal-dn")
-    public static Object[] NormalDN(){
+    public static Object[] normalDN(){
         return ParseCert.parseCertByAttributes("DN", ParameterUtil.normalpath, "all");
     }
 

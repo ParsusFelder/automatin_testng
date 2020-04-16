@@ -937,7 +937,6 @@ public class DataProviderUtil {
 
             for (String certStr : certStrs) {
                 tmp[--size] = new Object[]{certStr};
-                System.out.println(certStr);
             }
             return tmp;
         }
