@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by maxf on 18-05-14.
+ * Created by zhaoyongzhi on 2020-04-26
  * 初始化服务器连接
  */
 public class NetSignServerInit {
@@ -58,7 +58,7 @@ public class NetSignServerInit {
     }
 
     public static String getDN(int order, String dn) {
-        if ((dn == null) || dn.equals("")) {
+        if ((dn == null) || "".equals(dn)) {
             return dn;
         }
         // 配置DN的顺序，0：自然顺序，1:CN在最前，2：CN在最后
@@ -72,10 +72,11 @@ public class NetSignServerInit {
                     return dn;
                 }
             case 2:
-                if (dn.startsWith("CN=") || dn.startsWith("cn="))
+                if (dn.startsWith("CN=") || dn.startsWith("cn=")) {
                     return turnDNString(dn);
-                else
+                } else {
                     return dn;
+                }
             default:
                 break;
         }
@@ -83,25 +84,27 @@ public class NetSignServerInit {
     }
 
     public static String setReverseDN(String dn) {
-        if (dn.startsWith("CN=") || dn.startsWith("cn="))
+        if (dn.startsWith("CN=") || dn.startsWith("cn=")) {
             return turnDNString(dn);
-        else
+        } else {
             return reverseDN(dn);
+        }
     }
 
     private static String turnDNString(String dn) {
-        if (dn.indexOf(",") < 0)
+        if (!dn.contains(",")) {
             return dn;
-        else {
-            String split = (dn.indexOf(", ") > -1) ? ", " : ",";
+        } else {
+            String split = (dn.contains(", ")) ? ", " : ",";
             String[] pieces = dn.split(split);
-            String tmp = "";
+            StringBuilder tmp = new StringBuilder();
             for (int i = pieces.length - 1; i >= 0; i--) {
-                tmp += pieces[i];
-                if (i != 0)
-                    tmp += split;
+                tmp.append(pieces[i]);
+                if (i != 0) {
+                    tmp.append(split);
+                }
             }
-            return tmp;
+            return tmp.toString();
         }
     }
 
@@ -143,7 +146,7 @@ public class NetSignServerInit {
         if (dn != null) {
             String o;
             BasicX509NameTokenizer xt = new BasicX509NameTokenizer(dn);
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             boolean first = true;
             while (xt.hasMoreTokens()) {
                 o = xt.nextToken();
@@ -206,7 +209,7 @@ public class NetSignServerInit {
                     } else if (c == '\\') {
                         buf.append(c);
                         escaped = true;
-                    } else if ((c == ',') && (!escaped)) {
+                    } else if (c == ',') {
                         break;
                     } else {
                         buf.append(c);
@@ -226,7 +229,7 @@ public class NetSignServerInit {
         String str = "1234567890";
         //2. 由Random生成随机数
         Random random = new Random();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         //3. 长度为几就循环几次
         for (int i = 0; i < length; ++i) {
             //从62个的数字或字母中选择
@@ -241,15 +244,14 @@ public class NetSignServerInit {
 
     public static String jsonsort(JSONObject json) {
         StringBuilder builder = new StringBuilder();
-        List<String> list1 = new ArrayList<String>();
-        list1.addAll(json.keySet());
+        List<String> list1 = new ArrayList<>(json.keySet());
         Collections.sort(list1);
         for (int i = 0; i < list1.size(); i++) {
             char ch = ' ';
             if (i < list1.size() - 1) {
                 ch = '&';
             }
-            builder.append(list1.get(i) + "=" + json.get(list1.get(i)).toString() + ch);
+            builder.append(list1.get(i)).append("=").append(json.get(list1.get(i)).toString()).append(ch);
         }
 
         return builder.toString().trim() + '&';
