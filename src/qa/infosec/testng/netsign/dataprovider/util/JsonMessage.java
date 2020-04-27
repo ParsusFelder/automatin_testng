@@ -23,4 +23,5 @@ public class JsonMessage {
             "\"accType\":\"accType\"," +
             "\"certType\":\"certTypeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" " +
             "}";
+
 }
