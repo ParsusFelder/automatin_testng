@@ -124,7 +124,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
     }
 
@@ -153,7 +153,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw签摘要失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
 
         try {
@@ -280,7 +280,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
     }
 
@@ -309,7 +309,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw签摘要失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
 
         try {
@@ -322,7 +322,7 @@ public class TestRawVerifyHash {
                 }
             }
         } catch (Exception e) {
-            Assert.fail("Raw验摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw验摘要失败：" + e.getMessage());
         }
     }
 
@@ -342,7 +342,7 @@ public class TestRawVerifyHash {
         String digestData = null;
         String pSignData;
         try {
-            if (sn.equals("50e66bcca4")) {
+            if ("50e66bcca4".equals(sn)) {
                 return;
             }
             byte[] digest = Utils.getDigest(alg, plainText);
@@ -359,9 +359,7 @@ public class TestRawVerifyHash {
             pSignData = upkiResult.getResults().get("sign_text").toString();
             UpkiResult upkiResult1 = agent.rawVerifyHash(digestData, sn, alg, pSignData, null);
             if (upkiResult1.getReturnCode() != -100124) {
-                if (!"50e66bcca4".equals(sn)) {
-                    Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
-                }
+                Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
             Assert.fail("Raw签摘要失败：" + e.getMessage());
@@ -399,10 +397,11 @@ public class TestRawVerifyHash {
             pSignData = upkiResult.getResults().get("sign_text").toString();
             upkiResult1 = agent.rawVerifyHash(digestData, sn, alg, pSignData, null);
             if (upkiResult1 == null || upkiResult1.getReturnCode() != -100106) {
+                assert upkiResult1 != null;
                 Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
     }
 
@@ -440,7 +439,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw签摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw签摘要失败：" + e.getMessage());
         }
     }
 
@@ -942,7 +941,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_22(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用正常RSA证书DN签名，公钥验签");
@@ -982,7 +981,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_23(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用作废RSA证书DN签名，公钥验签");
@@ -1025,7 +1024,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_24(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用过期RSA证书DN签名，公钥验签");
@@ -1065,7 +1064,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_25(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用不受信任RSA证书DN签名，公钥验签");
@@ -1108,7 +1107,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-rsa-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_26(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用正常RSA证书SN签名，公钥验签");
@@ -1148,7 +1147,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-rsa-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_27(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用作废RSA证书SN签名，公钥验签");
@@ -1190,7 +1189,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-rsa-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_28(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用过期RSA证书SN签名，公钥验签");
@@ -1221,7 +1220,7 @@ public class TestRawVerifyHash {
                 Assert.fail("Raw验摘要失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
             }
         } catch (Exception e) {
-            Assert.fail("Raw验摘要失败：" + e.getMessage() + upkiResult1.getReturnCode());
+            Assert.fail("Raw验摘要失败：" + e.getMessage());
         }
     }
 
@@ -1230,7 +1229,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "nottrust-rsa-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_29(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用不受信任RSA证书SN签名，公钥验签");
@@ -1243,7 +1242,7 @@ public class TestRawVerifyHash {
         UpkiResult upkiResult1 = null;
         String digestData = null;
         String pSignData;
-        if (sn.equals("50e66bcca4")) {
+        if ("50e66bcca4".equals(sn)) {
             return;
         }
         try {
@@ -1273,7 +1272,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_30(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用正常SM2证书DN签名，公钥验签");
@@ -1316,7 +1315,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_31(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用作废SM2证书DN签名，公钥验签");
@@ -1359,7 +1358,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-dn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-dn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_32(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用过期SM2证书DN签名，公钥验签");
@@ -1403,7 +1402,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "normal-sm2-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_33(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用正常SM2证书SN签名，公钥验签");
@@ -1446,7 +1445,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "revoke-sm2-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_34(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用作废SM2证书SN签名，公钥验签");
@@ -1489,7 +1488,7 @@ public class TestRawVerifyHash {
      *
      * @param alg 摘要算法
      */
-    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-sn-base64-salg", dataProviderClass =
+    @Test(groups = "abcjew.rawverifyhash.normal", dataProvider = "expire-sm2-sn-base64-dalg", dataProviderClass =
             NetSignDataProvider.class)
     public void testRawVerifyHash_35(String str, String alg) {
         System.out.println("Raw验摘要（rawVerifyHash）:使用过期SM2证书SN签名，公钥验签");

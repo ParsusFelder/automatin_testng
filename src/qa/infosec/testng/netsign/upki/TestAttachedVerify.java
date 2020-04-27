@@ -17,7 +17,8 @@ import java.util.Map;
  * @author suiyixin
  * @ClassName: TestAttachedVerify
  * @date 2020-03-09 15:03
- * @Description: <p>用例覆盖点：</p>
+ * @Description: Attached验签名
+ * <p>用例覆盖点：</p>
  * <p>1）所有传参均正常</p>
  * <p>2）签名值被篡改</p>
  * <p>3）签名值为空或者null</p>
@@ -72,7 +73,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试所有传参均正常，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -102,7 +103,7 @@ public class TestAttachedVerify {
             String new_sign_result;
             new_sign_result = sb.toString();
             verify = agent.attachedVerify(new_sign_result);
-            if (verify.getBoolResult() != false || verify.getReturnCode() != -100104) {
+            if (verify.getBoolResult() || verify.getReturnCode() != -100104) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试被篡改的签名值，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {
@@ -147,7 +148,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != false || verify.getReturnCode() != -100106) {
+            if (verify.getBoolResult() || verify.getReturnCode() != -100106) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试过期证书，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {
@@ -173,7 +174,7 @@ public class TestAttachedVerify {
             if (!("C=CN,O=infosec,OU=test3,CN=C020revokeMatchingAnyCrlfbd").equals(dn)
                     && !("C=CN,O=infosec,CN=C020revokedNocrlfile").equals(dn)) {
                 verify = agent.attachedVerify(signresult);
-                if (verify.getBoolResult() != false || verify.getReturnCode() != -100108) {
+                if (verify.getBoolResult() || verify.getReturnCode() != -100108) {
                     Assert.fail(" 金E卫ABCJEW-attached验签，测试作废证书，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
                 }
             }
@@ -198,7 +199,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != false || verify.getReturnCode() != -100124) {
+            if (verify.getBoolResult() || verify.getReturnCode() != -100124) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试不受信任证书，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {
@@ -218,7 +219,7 @@ public class TestAttachedVerify {
             String signresult =
                     "MIIFfwYJKoZIhvcNAQcCoIIFcDCCBWwCAQExDzANBglghkgBZQMEAgEFADASBgkqhkiG9w0BBwGgBQQDYXNkoIIDvTCCA7kwggKhoAMCAQICBTtTpB51MA0GCSqGSIb3DQEBCwUAMEsxCzAJBgNVBAYTAmNuMSYwJAYDVQQKDB1JTkZPU0VDIFRlY2hub2xvZ2llcyBTSEEyNTZJRDEUMBIGA1UEAwwLYXBwU0hBMjU2SUQwHhcNMTcxMTIxMDI1NzA3WhcNMjYwODEyMDI0NzE0WjAsMQswCQYDVQQGEwJDTjELMAkGA1UECgwCUUExEDAOBgNVBAMMB0NTXzIwNDgwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDDaAPX3ElycgeakaGuIoSVS9zC14EG63lC+yluIoksDD75/nTVUlOlUO4jqnvgfBXGHKLtnJ6ASRJ4J14eGoVVJT8lBwK5ITgvzO/tgiqP1N7ibe13Qr/jXnEkRAFmTtq0Ttp6ZBCkg/XpJqhZMf0DCIwOeUTOtvDX6uYY5kdQTBHTMRVtUwMyKgP+cRmjBDT1fL/U179/cMJZ28TflrozkN2OGrDm1pgJ/lFSBLukXFysNo/Ptd7LxYC9W/PQl84T0lGaf903ABV8aimP5ka+riRHKyBDx6D4VXNaTutj6jy36DcZyPPFaDWbFU+oHxN5r2ZmiVY8JrG72MyRaDIlAgMBAAGjgcIwgb8wHwYDVR0jBBgwFoAUftjUt+YkKC1TcaPnLkuqwKPcuxgwCQYDVR0TBAIwADBlBgNVHR8EXjBcMFqgWKBWpFQwUjENMAsGA1UEAwwEY3JsNTEMMAoGA1UECwwDY3JsMSYwJAYDVQQKDB1JTkZPU0VDIFRlY2hub2xvZ2llcyBTSEEyNTZJRDELMAkGA1UEBhMCY24wCwYDVR0PBAQDAgeAMB0GA1UdDgQWBBSrCUc21LwS+/me6DdOr4HUGJO+ZjANBgkqhkiG9w0BAQsFAAOCAQEALclvCpIe0nL8mT+2EfjGuPK3yYhO/+aOIfUAH5k8HNkTW8h9VRig0er3DimuDxd/vFz79kGTjpkZ69LJteR+Fws6eJjsu7Homcsyxku/+/ogURNVlTB2uXZG8Rjf0fadBCjw+mRW4HCbSoXDgs4t2Uw5/bmyz8vNN0IFCX5LjClcXUOGXQ+ogVEE7rsAEQEyfD3OX2EF/arolFJ1o9j4u3/M5DUVZRazndlLtbOOcn1yd4uFqzhtzRmxMywwaQzHHd+qn/mfeSsrFGnZb7VgPnY5yt1Kxtx2fB5lgkOJjoBzM+FIrAqOg41vo6NlZwu9HvDhta41S7115q+JplA9ZzGCAX8wggF7AgEBMFQwSzELMAkGA1UEBhMCY24xJjAkBgNVBAoMHUlORk9TRUMgVGVjaG5vbG9naWVzIFNIQTI1NklEMRQwEgYDVQQDDAthcHBTSEEyNTZJRAIFO1OkHnUwDQYJYIZIAWUDBAIBBQAwDQYJKoZIhvcNAQEBBQAEggEAuPWWzerLu1z5WA2Cj8sie8DVlzPdPrDPWpkFseVr4rCjMs8l820SQwBkeaNINUbOUiUGqaegdyEgaO63zT53CnrSHTbAC+EtThC8lqdqOnlXfUHt04Lav350iQri6w8BJj4/aG810k588SePlqjTQnZ7lBSgGjK8tJH/PxVKjmKo3JSkvMSw7hMpClCiSYXAB7ooX2DTft3bv0FUjzMeAx9T8dcsWwyKS0wNIqnfxKlleeIgI0G25qkR1c23FLUOU3SQ/agAdUA2iU9oZm9K7adoJ048sm6dygX5BhglPW3ZBFiyBr1iRs1bYJF4c2CdS8oKiqTO4OYh4SNHh+7JDA==";
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试服务器不存在公钥证书是否验签成功，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -243,7 +244,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试密钥证书传SN的签名值，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -269,7 +270,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试大原文，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -295,7 +296,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试大原文，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -320,7 +321,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试默认摘要算法的签名值，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
@@ -346,7 +347,7 @@ public class TestAttachedVerify {
             Object sign_text = result.get("sign_text");
             String signresult = sign_text.toString();
             verify = agent.attachedVerify(signresult);
-            if (verify.getBoolResult() != true || verify.getReturnCode() != 0
+            if (!verify.getBoolResult() || verify.getReturnCode() != 0
                     || !"success".equals(verify.getReturnContent())) {
                 Assert.fail(" 金E卫ABCJEW-attached验签，测试小写摘要算法的签名值，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }

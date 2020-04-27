@@ -323,7 +323,7 @@ public class TestDeatachedVerifyHash {
         String digestData = null;
         String pSignData;
         try {
-            if (sn.equals("50e66bcca4")) {
+            if ("50e66bcca4".equals(sn)) {
                 return;
             }
             byte[] digest = Utils.getDigest(alg, plainText);
