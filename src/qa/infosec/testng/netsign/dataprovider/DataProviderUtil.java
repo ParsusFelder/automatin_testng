@@ -6,10 +6,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.testng.Assert;
-import qa.infosec.testng.netsign.dataprovider.util.ParameterUtil;
-import qa.infosec.testng.netsign.dataprovider.util.ParseCert;
-import qa.infosec.testng.netsign.dataprovider.util.ParseFile;
-import qa.infosec.testng.netsign.dataprovider.util.Utils;
+import qa.infosec.testng.netsign.dataprovider.util.*;
 
 import java.security.Security;
 import java.security.cert.X509Certificate;

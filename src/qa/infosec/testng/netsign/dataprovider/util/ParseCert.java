@@ -12,6 +12,7 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ import java.util.List;
  * <p>Title: ParseCert</p>
  * <p>Description: </p>
  *
- * @author maxf
- * @date 2019年8月13日
+ * @author zhaoyongzhi
+ * @date 2020年4月26日
  */
 public class ParseCert {
 
@@ -32,7 +33,7 @@ public class ParseCert {
      * 解析证书
      *
      * @param certpath 证书路径
-     * @param keyType  证书类型，当为null时，返回所有证书
+     * @param keyType  证书类型，当为all时，返回所有证书
      * @return X509Certificate[]
      */
     public static ArrayList<X509Certificate> getCert(String certpath, String keyType) {
@@ -40,30 +41,30 @@ public class ParseCert {
         File dir = new File(certpath);
         File[] f = dir.listFiles();
 
-        String algoid = "";
-        ArrayList<X509Certificate> certlist = new ArrayList<X509Certificate>();
+        String algoid;
+        ArrayList<X509Certificate> certlist = new ArrayList<>();
         if (null == f || f.length == 0) {
             Assert.fail(certpath + "目录为空，无法读取证书");
         } else {
             try {
-                for (int i = 0; i < f.length; i++) {
+                for (File file : f) {
                     CertificateFactory certFactory = CertificateFactory.getInstance("X.509", "INFOSEC");
-                    FileInputStream fis = new FileInputStream(f[i]);
+                    FileInputStream fis = new FileInputStream(file);
                     X509Certificate cert = (X509Certificate) certFactory.generateCertificate(fis);
                     fis.close();
                     algoid = cert.getSigAlgOID();
 
-                    if (keyType == null || keyType.toLowerCase().equals("all")) {
+                    if (keyType == null || "all".equals(keyType.toLowerCase())) {
                         certlist.add(cert);
                         continue;
                     }
 
-                    if ("1.2.156.10197.1.501".equals(algoid)) {    // SM2
-                        if (keyType.toLowerCase().equals("sm2")) {
+                    if ("1.2.156.10197.1.501".equals(algoid)) {
+                        if ("sm2".equals(keyType.toLowerCase())) {
                             certlist.add(cert);
                         }
                     } else {
-                        if (keyType.toLowerCase().equals("rsa")) {
+                        if ("rsa".equals(keyType.toLowerCase())) {
                             certlist.add(cert);
                         }
                     }
@@ -76,53 +77,55 @@ public class ParseCert {
     }
 
     public static String[] getCertPubkey(String certpath, String keyType) throws IOException {
-        String subjectPubkey = "";
-        byte[] pubkey = null;
+        String subjectPubkey;
+        byte[] pubkey;
         List<String> pubList = new ArrayList<>();
-        X509Certificate[] cert = (X509Certificate[]) getCert(certpath, keyType)
+        X509Certificate[] cert = getCert(certpath, keyType)
                 .toArray(new X509Certificate[0]);
 
-        for (int i = 0; i < cert.length; i++) {
-            pubkey = cert[i].getPublicKey().getEncoded();
+        for (X509Certificate x509Certificate : cert) {
+            pubkey = x509Certificate.getPublicKey().getEncoded();
             subjectPubkey = Base64.encode(pubkey);
             pubList.add(subjectPubkey);
         }
-        return pubList.toArray(new String[pubList.size()]);
+        return pubList.toArray(new String[0]);
     }
 
     public static String[] parseCertByAttributes(String attr, String certpath, String keyType) {
-        String str = null;
-        List<String> lists = new ArrayList<String>();
-        X509Certificate[] cert = (X509Certificate[]) getCert(certpath, keyType)
+        String str;
+        List<String> lists = new ArrayList<>();
+        X509Certificate[] cert = getCert(certpath, keyType)
                 .toArray(new X509Certificate[0]);
         if (attr != null && attr.length() != 0) {
-            if (attr.toLowerCase().equals("dn")) {
-                for (int i = 0; i < cert.length; i++) {
-                    str = cert[i].getSubjectDN().getName();
-                    lists.add(str);
-                }
-            } else if (attr.toLowerCase().equals("sn")) {
-                for (int i = 0; i < cert.length; i++) {
-                    str = Utils.biginter2HexString(cert[i].getSerialNumber());
-                    lists.add(str);
-                }
-            } else if (attr.toLowerCase().equals("bankcode")) {
-                String[] bankCode = ParseFile.getBankCode(ParameterUtil.localdetailpath, certpath, keyType);
-                for (int i = 0; i < bankCode.length; i++) {
-                    lists.add(bankCode[i]);
-                }
-            } else {
-                return null;
+            switch (attr.toLowerCase()) {
+                case "dn":
+                    for (X509Certificate x509Certificate : cert) {
+                        str = x509Certificate.getSubjectDN().getName();
+                        lists.add(str);
+                    }
+                    break;
+                case "sn":
+                    for (X509Certificate x509Certificate : cert) {
+                        str = Utils.biginter2HexString(x509Certificate.getSerialNumber());
+                        lists.add(str);
+                    }
+                    break;
+                case "bankcode":
+                    String[] bankCode = ParseFile.getBankCode(ParameterUtil.localdetailpath, certpath, keyType);
+                    lists.addAll(Arrays.asList(bankCode));
+                    break;
+                default:
+                    return null;
             }
         }
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
      * X509Certificate 类型证书转换为base64格式
      *
-     * @param certificate
-     * @return base64Cert
+     * @param certificate 证书内容
+     * @return base64Cert 证书的base64信息
      */
     public static String getBase64Cert(X509Certificate certificate) {
         String base64Cert = null;
@@ -139,8 +142,8 @@ public class ParseCert {
 
     public static void main(String[] args) {
         String[] strings = parseCertByAttributes(null, ParameterUtil.allcertpath, "sm2");
-        for (int i = 0; i < strings.length; i++) {
-            System.out.println(strings[i]);
+        for (String string : strings) {
+            System.out.println(string);
         }
     }
 

@@ -3,6 +3,8 @@ package qa.infosec.testng.netsign.dataprovider.util;
 import cn.com.infosec.asn1.x509.X509NameTokenizer;
 import cn.com.infosec.jce.provider.InfosecProvider;
 import cn.com.infosec.netsign.crypto.util.Base64;
+import cn.com.infosec.netsign.json.JsonObject;
+import cn.com.infosec.netsign.json.JsonParser;
 import org.testng.Assert;
 
 import java.math.BigInteger;
@@ -33,7 +35,7 @@ public class Utils {
     private static final String[] dNObjects = dNObjectsForward;
 
     public static String getDN(int order, String dn) {
-        if ((dn == null) || dn.equals("")) {
+        if ((dn == null) || "".equals(dn)) {
             return dn;
         }
         // 配置DN的顺序，0：自然顺序，1:CN在最前，2：CN在最后
@@ -47,10 +49,11 @@ public class Utils {
                     return dn;
                 }
             case 2:
-                if (dn.startsWith("CN=") || dn.startsWith("cn="))
+                if (dn.startsWith("CN=") || dn.startsWith("cn=")) {
                     return turnDNString(dn);
-                else
+                } else {
                     return dn;
+                }
             default:
                 break;
         }
@@ -58,25 +61,27 @@ public class Utils {
     }
 
     public static String setReverseDN(String dn) {
-        if (dn.startsWith("CN=") || dn.startsWith("cn="))
+        if (dn.startsWith("CN=") || dn.startsWith("cn=")) {
             return turnDNString(dn);
-        else
+        } else {
             return reverseDN(dn);
+        }
     }
 
     private static String turnDNString(String dn) {
-        if (!dn.contains(","))
-            return dn;
-        else {
-            String split = (dn.indexOf(", ") <= -1) ? "{2}," : ", ";
+        if (dn.contains(",")) {
+            String split = (", ".contains(dn)) ? ", " : "{2},";
             String[] pieces = dn.split(split);
-            String tmp = "";
+            StringBuilder tmp = new StringBuilder();
             for (int i = pieces.length - 1; i >= 0; i--) {
-                tmp += pieces[i];
-                if (i != 0)
-                    tmp += split;
+                tmp.append(pieces[i]);
+                if (i != 0) {
+                    tmp.append(split);
+                }
             }
-            return tmp;
+            return tmp.toString();
+        } else {
+            return dn;
         }
     }
 
@@ -118,7 +123,7 @@ public class Utils {
         if (dn != null) {
             String o;
             BasicX509NameTokenizer xt = new BasicX509NameTokenizer(dn);
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             boolean first = true;
             while (xt.hasMoreTokens()) {
                 o = xt.nextToken();
@@ -133,8 +138,9 @@ public class Utils {
             if (buf.length() > 0) {
                 ret = buf.toString();
             }
-        }
 
+
+        }
         return ret;
     } // reverseDN
 
@@ -167,11 +173,9 @@ public class Utils {
                 char c = oid.charAt(end);
 
                 if (c == '"') {
+                    buf.append(c);
                     if (!escaped) {
-                        buf.append(c);
                         quoted = !quoted;
-                    } else {
-                        buf.append(c);
                     }
                     escaped = false;
                 } else {
@@ -181,7 +185,7 @@ public class Utils {
                     } else if (c == '\\') {
                         buf.append(c);
                         escaped = true;
-                    } else if ((c == ',') && (!escaped)) {
+                    } else if (c == ',') {
                         break;
                     } else {
                         buf.append(c);
@@ -200,7 +204,7 @@ public class Utils {
         String str = "1234567890";
         // 2. 由Random生成随机数
         Random random = new Random();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         // 3. 长度为几就循环几次
         for (int i = 0; i < length; ++i) {
             // 从62个的数字或字母中选择
@@ -254,7 +258,7 @@ public class Utils {
      * @return String value
      */
     public static String toHexString(byte[] bs) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         int i = 0;
 
         for (int length = bs.length; i < length; ++i) {
@@ -273,10 +277,11 @@ public class Utils {
 
     /**
      * 修改String类型数据，用于篡改密文
+     *
      * @param plainText 原文
-     * @param a 起始位置
-     * @param b 终止位置
-     * @param data 要修改的内容
+     * @param a         起始位置
+     * @param b         终止位置
+     * @param data      要修改的内容
      * @return 修改后的数据
      */
     public static String modifyData(String plainText, int a, int b, String data) {
@@ -288,10 +293,11 @@ public class Utils {
 
     /**
      * 修改byte[]类型数据，用于篡改密文
+     *
      * @param plainText 原文
-     * @param a 起始位置
-     * @param b 终止位置
-     * @param data 要修改的内容
+     * @param a         起始位置
+     * @param b         终止位置
+     * @param data      要修改的内容
      * @return 修改后的数据
      */
     public static byte[] modifyData(byte[] plainText, int a, int b, String data) {
@@ -326,13 +332,32 @@ public class Utils {
         StringBuilder builder = new StringBuilder();
         char[] chars = hex.toCharArray();
 
-        for (int i = 0; i < chars.length; ++i) {
-            if (chars[i] >= '0' && chars[i] <= '9' || chars[i] >= 'A' && chars[i] <= 'F') {
-                builder.append(chars[i]);
+        for (char aChar : chars) {
+            if (aChar >= '0' && aChar <= '9' || aChar >= 'A' && aChar <= 'F') {
+                builder.append(aChar);
             }
         }
 
         return builder.toString();
+    }
+
+    /**
+     * 读取jsonMessage信息，返回JsonObject对象
+     *
+     * @param jsonMessage json信息
+     * @return JsonObject对象
+     */
+    public static JsonObject getJsonObject(String jsonMessage) {
+        JsonObject jsonObject;
+        JsonParser jsonParser = new JsonParser("utf-8");
+
+        try {
+            jsonObject = jsonParser.parse(jsonMessage.toCharArray());
+            return jsonObject;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String[] args) {
