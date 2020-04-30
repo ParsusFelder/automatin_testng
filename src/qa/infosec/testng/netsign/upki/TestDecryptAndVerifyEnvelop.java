@@ -849,9 +849,11 @@ public class TestDecryptAndVerifyEnvelop {
         String crypto = null;
         String dAlg = "SHA1";
         String sAlg = "AES";
+        Bankcode = "C=cn,O=INFOSEC Technologies RSA,CN=S019overdue";
         try {
             upkiResult = agent.encryptAndSignEnvelope(pOrgData, Bankcode, Bankcode, dAlg, sAlg);
             crypto = upkiResult.getResults().get(UpkiResult.ENC_TEXT).toString();
+
             if (upkiResult.getReturnCode() != 0) {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
@@ -859,14 +861,14 @@ public class TestDecryptAndVerifyEnvelop {
             Assert.fail("制作网联格式数字信封失败：" + e.getMessage());
         }
 
-        try {
-            UpkiResult upkiResult1 = agent.decryptAndVerifyEnvelop(crypto, Bankcode, dAlg);
-            if (upkiResult1.getReturnCode() != -100212) {
-                Assert.fail("解带签名的数字信封失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
-            }
-        } catch (Exception e) {
-            Assert.fail("解带签名的数字信封失败：" + e.getMessage());
-        }
+//        try {
+//            UpkiResult upkiResult1 = agent.decryptAndVerifyEnvelop(crypto, Bankcode, dAlg);
+//            if (upkiResult1.getReturnCode() != -100212) {
+//                Assert.fail("解带签名的数字信封失败：" + upkiResult1.getReturnCode() + upkiResult1.getReturnContent());
+//            }
+//        } catch (Exception e) {
+//            Assert.fail("解带签名的数字信封失败：" + e.getMessage());
+//        }
     }
 
     /**

@@ -4,6 +4,7 @@ import cn.com.infosec.asn1.x509.X509NameTokenizer;
 import cn.com.infosec.netsign.agent.PBCAgent2G;
 import cn.com.infosec.netsign.agent.UpkiAgent;
 import com.alibaba.fastjson.JSONObject;
+import qa.infosec.testng.netsign.dataprovider.util.UtilsAgent2G;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +33,6 @@ public class NetSignServerInit {
         PBCAgent2G agent = null;
 
         try {
-            System.out.println("NetSignServer Init!");
             agent = new PBCAgent2G();
             agent.openSignServer(ip, port, password);
 
@@ -47,9 +47,22 @@ public class NetSignServerInit {
         UpkiAgent agent = null;
 
         try {
-            System.out.println("NetSignServer Init!");
             agent = new UpkiAgent();
             agent.openSignServer(ip, port, password, isUseConnectionPool, maxPoolSize);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return agent;
+    }
+
+    public UtilsAgent2G utilsStart(String ip, String port, String password) {
+
+        UtilsAgent2G agent = null;
+
+        try {
+            agent = new UtilsAgent2G();
+            agent.openSignServer(ip, port, password);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1267,6 +1267,66 @@ public class NetSignDataProvider {
     }
 
     /**
+     * 获取SM2和RSA作废证书DN
+     *
+     * @return 【dn】
+     */
+    @DataProvider(name = "revoke-dn")
+    public static Object[] revokeDN() {
+        return ParseCert.parseCertByAttributes("DN", revokepath, "all");
+    }
+
+    /**
+     * 获取SM2和RSA作废证书SN
+     *
+     * @return 【sn】
+     */
+    @DataProvider(name = "revoke-sn")
+    public static Object[] revokeSN() {
+        return ParseCert.parseCertByAttributes("SN", revokepath, "all");
+    }
+
+    /**
+     * 获取SM2和RSA作废证书Bankcode
+     *
+     * @return 【bankcode】
+     */
+    @DataProvider(name = "revoke-bankcode")
+    public static Object[] revokeBankcode() {
+        return ParseCert.parseCertByAttributes("bankcode", revokepath, "all");
+    }
+
+    /**
+     * 获取SM2和RSA作废证书DN
+     *
+     * @return 【dn】
+     */
+    @DataProvider(name = "expire-dn")
+    public static Object[] expireDN() {
+        return ParseCert.parseCertByAttributes("DN", expirepath, "all");
+    }
+
+    /**
+     * 获取SM2和RSA作废证书SN
+     *
+     * @return 【sn】
+     */
+    @DataProvider(name = "expire-sn")
+    public static Object[] expireSN() {
+        return ParseCert.parseCertByAttributes("SN", expirepath, "all");
+    }
+
+    /**
+     * 获取SM2和RSA作废证书Bankcode
+     *
+     * @return 【bankcode】
+     */
+    @DataProvider(name = "expire-bankcode")
+    public static Object[] expireBankcode() {
+        return ParseCert.parseCertByAttributes("bankcode", expirepath, "all");
+    }
+
+    /**
      * 获取正常RSA证书DN及摘要算法
      *
      * @return [dn, alg]

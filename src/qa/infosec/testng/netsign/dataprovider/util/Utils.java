@@ -304,7 +304,8 @@ public class Utils {
         String encode_text = Base64.encode(plainText);
         StringBuilder stringBuilder = new StringBuilder(encode_text);
         stringBuilder.replace(a, b, data);
-        encode_text = new String(stringBuilder);
+        encode_text = stringBuilder.toString();
+        String encode_text1 = new String(stringBuilder);
         plainText = Base64.decode(encode_text);
         return plainText;
     }
@@ -359,6 +360,8 @@ public class Utils {
             return null;
         }
     }
+
+
 
     public static void main(String[] args) {
         byte[] sha1s = getDigest("SHA256", "11111111".getBytes());

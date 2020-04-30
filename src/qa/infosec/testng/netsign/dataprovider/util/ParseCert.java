@@ -141,7 +141,7 @@ public class ParseCert {
 
 
     public static void main(String[] args) {
-        String[] strings = parseCertByAttributes(null, ParameterUtil.allcertpath, "sm2");
+        String[] strings = parseCertByAttributes("bankcode", ParameterUtil.normalpath, "all");
         for (String string : strings) {
             System.out.println(string);
         }

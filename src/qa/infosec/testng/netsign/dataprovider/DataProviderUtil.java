@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static qa.infosec.testng.netsign.dataprovider.util.ParameterUtil.expirepath;
+
 /**
  * 组合数据源
  * <p>
@@ -999,9 +1001,9 @@ public class DataProviderUtil {
     }
 
     public static void main(String[] args) {
-        String[] strings = RSAHashArrays();
-        for (String s : strings) {
-            System.out.println(s);
+        Object[][] objects = composeCertAttrWithAlg("bankcode", false, false, expirepath, "sm2", 0);
+        for (int i = 0; i < objects.length ; i++) {
+            System.out.println(objects[i][0]);
         }
     }
 }
