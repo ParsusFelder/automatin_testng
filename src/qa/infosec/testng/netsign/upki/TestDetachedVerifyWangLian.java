@@ -410,7 +410,7 @@ public class TestDetachedVerifyWangLian {
             String signresult = sign_text.toString();
 
             verify = agent.detachedVerifyWangLian(null, signresult);
-            if (verify.getReturnCode() != -100104) {
+            if (verify.getReturnCode() != -100104 && verify.getReturnCode() != -100100) {
                 Assert.fail(" 金E卫ABCJEW-Detached验签，测试原文为null，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {
@@ -434,7 +434,7 @@ public class TestDetachedVerifyWangLian {
             String signresult = sign_text.toString();
 
             verify = agent.detachedVerifyWangLian("".getBytes(), signresult);
-            if (verify.getReturnCode() != -100104) {
+            if (verify.getReturnCode() != -100104 && verify.getReturnCode() != -100100) {
                 Assert.fail(" 金E卫ABCJEW-Detached验签，测试原文为空，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {

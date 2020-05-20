@@ -450,7 +450,7 @@ public class TestDetachedVerify {
             String signresult = sign_text.toString();
 
             verify = agent.detachedVerify("".getBytes(), signresult);
-            if (verify.getReturnCode() != -100104) {
+            if (verify.getReturnCode() != -100104 && verify.getReturnCode() != -100100) {
                 Assert.fail(" 金E卫ABCJEW-Detached验签，测试原文为空，失败！" + verify.getBoolResult() + verify.getReturnCode() + verify.getReturnContent());
             }
         } catch (Exception e) {

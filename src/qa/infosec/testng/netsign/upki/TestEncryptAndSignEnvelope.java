@@ -186,7 +186,7 @@ public class TestEncryptAndSignEnvelope {
         try {
             upkiResult = agent.encryptAndSignEnvelope(pOrgData, bankcode, bankcode, dAlg, sAlg);
             if (upkiResult.getReturnCode() != 0) {
-                if (upkiResult.getReturnCode() != -100203) {
+                if (upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                     Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
                 }
                 Reporter.log("制作带签名的数字信封（encryptAndSignEnvelope）：部分证书无法通过Bankcode识别，导致执行方法时服务报错，无法找到证书主题");
@@ -215,7 +215,7 @@ public class TestEncryptAndSignEnvelope {
         try {
             upkiResult = agent.encryptAndSignEnvelope(pOrgData, bankcode, bankcode, dAlg, sAlg);
             if (upkiResult.getReturnCode() != 0) {
-                if (upkiResult.getReturnCode() != -100203) {
+                if (upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                     Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
                 }
                 Reporter.log("制作带签名的数字信封（encryptAndSignEnvelope）：部分证书无法通过Bankcode识别，导致执行方法时服务报错，无法找到证书主题");

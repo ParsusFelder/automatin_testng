@@ -620,7 +620,7 @@ public class TestDecryptAndVerifyEnvelop {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            if (upkiResult != null && upkiResult.getReturnCode() != -100203) {
+            if (upkiResult != null && upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                 Assert.fail("制作网联格式数字信封失败：" + e.getMessage() + upkiResult.getReturnCode());
             }
             Reporter.log("制作网联格式数字信封失败（encryptAndSignEnvelope）：部分证书无法根据bankcode获取");
@@ -659,7 +659,7 @@ public class TestDecryptAndVerifyEnvelop {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            if (upkiResult != null && upkiResult.getReturnCode() != -100203) {
+            if (upkiResult != null && upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                 Assert.fail("制作网联格式数字信封失败：" + e.getMessage() + upkiResult.getReturnCode());
             }
             Reporter.log("制作网联格式数字信封失败（encryptAndSignEnvelope）：部分证书无法根据bankcode获取");
@@ -701,7 +701,7 @@ public class TestDecryptAndVerifyEnvelop {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            if (upkiResult != null && upkiResult.getReturnCode() != -100203) {
+            if (upkiResult != null && upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                 Assert.fail("制作网联格式数字信封失败：" + e.getMessage() + upkiResult.getReturnCode());
             }
             Reporter.log("制作网联格式数字信封失败（encryptAndSignEnvelope）：部分证书无法根据bankcode获取");
@@ -778,7 +778,7 @@ public class TestDecryptAndVerifyEnvelop {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            if (upkiResult != null && upkiResult.getReturnCode() != -100203) {
+            if (upkiResult != null && upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                 Assert.fail("制作网联格式数字信封失败：" + e.getMessage() + upkiResult.getReturnCode());
             }
             Reporter.log("制作网联格式数字信封失败（encryptAndSignEnvelope）：部分证书无法根据bankcode获取");
@@ -817,7 +817,7 @@ public class TestDecryptAndVerifyEnvelop {
                 Assert.fail("制作带签名的数字信封失败：" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
         } catch (Exception e) {
-            if (upkiResult != null && upkiResult.getReturnCode() != -100203) {
+            if (upkiResult != null && upkiResult.getReturnCode() != -100203 && upkiResult.getReturnCode() != -100204) {
                 Assert.fail("制作网联格式数字信封失败：" + e.getMessage() + upkiResult.getReturnCode());
             }
             Reporter.log("制作网联格式数字信封失败（encryptAndSignEnvelope）：部分证书无法根据bankcode获取");
