@@ -295,12 +295,12 @@ public class TestUnsymmDecrypt {
     }
 
     /**
-     * 非对称解密，DN/SN/BankCode错误
+     * 非对称解密，密文篡改
      */
     @Test(groups = "abcjew.unsymmdecrypt.normal", dataProvider = "allcert-dn", dataProviderClass =
             NetSignDataProvider.class)
     public void testUnsymmDecrypt_09(String str) {
-        System.out.println("Test UnsymmDecrypt DN Normal");
+        System.out.println("Test UnsymmDecrypt DN Error");
         String[] split = str.split("%");
         String DN = split[0];
         String base64Cert = split[1];
@@ -333,12 +333,12 @@ public class TestUnsymmDecrypt {
     }
 
     /**
-     * 非对称解密，密文篡改
+     * 非对称解密，DN错误
      */
     @Test(groups = "abcjew.unsymmdecrypt.normal", dataProvider = "allcert-dn", dataProviderClass =
             NetSignDataProvider.class)
     public void testUnsymmDecrypt_08(String str) {
-        System.out.println("Test UnsymmDecrypt DN Normal");
+        System.out.println("Test UnsymmDecrypt DN Error");
         String[] split = str.split("%");
         String DN = split[0];
         String base64Cert = split[1];
