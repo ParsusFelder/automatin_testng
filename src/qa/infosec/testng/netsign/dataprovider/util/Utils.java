@@ -364,8 +364,9 @@ public class Utils {
 
 
     public static void main(String[] args) {
-        byte[] sha1s = getDigest("SHA256", "11111111".getBytes());
+        byte[] sha1s = getDigest("SM3", Utils.getRandomString(1024).getBytes());
         String encode = Base64.encode(sha1s);
+        System.out.println(encode);
         String s = Utils.toHexString(Base64.decode(encode));
         System.out.println(s);
 

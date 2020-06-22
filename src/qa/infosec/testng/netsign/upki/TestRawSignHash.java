@@ -72,7 +72,6 @@ public class TestRawSignHash {
             byte[] digest = Utils.getDigest(alg, plainText);
             String digestData = Base64.encode(digest);
             upkiResult = agent.rawSignHash(digestData, dn, alg);
-            System.out.println(upkiResult.getResults());
             if (upkiResult.getReturnCode() != 0 || upkiResult.getResults() == null) {
                 Assert.fail("RawǩժҪʧ�ܣ�" + upkiResult.getReturnCode() + upkiResult.getReturnContent());
             }
